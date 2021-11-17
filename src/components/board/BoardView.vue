@@ -37,6 +37,18 @@
         </b-card>
       </b-col>
     </b-row>
+    <comment-write :articleno="this.$route.params.articleno" />
+    <comment-write
+      v-if="isModifyShow && modifyComment != null"
+      :modifyComment="modifyComment"
+      @modify-comment-cancel="onModifyCommentCancel"
+    />
+    <comment
+      v-for="(comment, index) in comments"
+      :key="index"
+      :comment="comment"
+      @modify-comment="onModifyComment"
+    />
   </b-container>
 </template>
 
@@ -44,8 +56,11 @@
 // import moment from "moment";
 import { mapGetters } from "vuex";
 import http from "@/util/http-common";
+import Comment from "@/components/board/child/comment/Comment.vue";
+import CommentWrite from "@/components/board/child/comment/CommentWrite.vue";
 
 export default {
+  components: { CommentWrite, Comment },
   data() {
     return {
       article: {},

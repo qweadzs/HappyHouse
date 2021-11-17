@@ -50,9 +50,7 @@ export default {
         }
         alert(msg);
         this.$store.dispatch("getComments", this.comment.article_no);
-     
       });
-      //}
     },
   },
 };
