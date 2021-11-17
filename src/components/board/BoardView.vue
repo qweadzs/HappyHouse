@@ -42,6 +42,7 @@
 
 <script>
 // import moment from "moment";
+import { mapGetters } from "vuex";
 import http from "@/util/http-common";
 
 export default {
@@ -56,6 +57,7 @@ export default {
         return this.article.content.split("\n").join("<br>");
       return "";
     },
+    ...mapGetters(["article"]),
     // changeDateFormat() {
     //   return moment(new Date(this.article.regtime)).format(
     //     "YYYY.MM.DD hh:mm:ss"

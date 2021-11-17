@@ -10,6 +10,12 @@ export default new Vuex.Store({
     guguns: [{ value: null, text: "선택하세요" }],
     houses: [],
     house: null,
+    comments: [],
+  },
+  getters: {
+    comments(state) {
+      return state.comments;
+    },
   },
   mutations: {
     SET_SIDO_LIST(state, sidos) {
@@ -33,6 +39,9 @@ export default new Vuex.Store({
     },
     SET_DETAIL_HOUSE(state, house) {
       state.house = house;
+    },
+    SET_COMMENTS(state, payload) {
+      state.comments = payload;
     },
   },
   actions: {
@@ -84,6 +93,17 @@ export default new Vuex.Store({
     detailHouse({ commit }, house) {
       //나중에 house 일련번호를 이용하여 API 호출
       commit("SET_DETAIL_HOUSE", house);
+    },
+
+    getComments({ commit }, payload) {
+      http
+        .get("/comment/" + payload)
+        .then(({ data }) => {
+          commit("SET_COMMENTS", data);
+        })
+        .catch(() => {
+          alert("서평조회 : 에러 발생!");
+        });
     },
   },
   modules: {},
