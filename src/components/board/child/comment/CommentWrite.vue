@@ -12,7 +12,7 @@
     </div>
     <div v-else class="regist_form">
       <textarea name="comment" v-model="comment" cols="35" rows="2"></textarea>
-      <button @click="registComment(article_no)">등록</button>
+      <button @click="registComment()">등록</button>
     </div>
   </div>
 </template>
@@ -29,17 +29,20 @@ export default {
       // 차후 작성자 이름은 로그인 구현후 로그인한 사용자로 바꾼다.
       user_name: "오싸피",
       comment: "",
+      articleNo: Number,
     };
   },
 
   methods: {
-    registComment(data) {
-      console.log(data + "바껴야할 !!");
+    registComment() {
+      this.tmp = this.$route.params.articleno;
+      console.log(this.$route.params.articleno + "바껴야할 !!");
+      console.log(this.tmp + "바껴야할 !!");
       http
         .post("/comment", {
           user_name: this.user_name,
           comment: this.comment,
-          article_no: this.article_no,
+          articleNo: this.tmp,
         })
         .then(({ data }) => {
           let msg = "등록 처리시 문제가 발생했습니다.";
@@ -48,7 +51,7 @@ export default {
           }
           alert(msg);
           this.comment = "";
-          this.$store.dispatch("getComments", this.article_no);
+          this.$store.dispatch("getComments", this.articleNo);
         });
     },
 
