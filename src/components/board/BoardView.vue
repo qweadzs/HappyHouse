@@ -37,11 +37,10 @@
         </b-card>
       </b-col>
     </b-row>
-    <comment-write :articleno="this.$route.params.articleno" />
+    <comment-write :articleno="this.articleno" />
     <comment-write
       v-if="isModifyShow && modifyComment != null"
       :modifyComment="modifyComment"
-      :article_no="this.$route.params.articleno"
       @modify-comment-cancel="onModifyCommentCancel"
     />
     <comment
@@ -67,6 +66,7 @@ export default {
       article: {},
       isModifyShow: false,
       modifyComment: Object,
+      articleno: Number,
     };
   },
 
@@ -77,17 +77,13 @@ export default {
       return "";
     },
     ...mapGetters(["comments"]),
-    // changeDateFormat() {
-    //   return moment(new Date(this.article.regtime)).format(
-    //     "YYYY.MM.DD hh:mm:ss"
-    //   );
-    // },
   },
   created() {
     http.get(`/board/${this.$route.params.articleno}`).then(({ data }) => {
       this.article = data;
     });
-    console.log(this.$route.params.articleno);
+    this.articleno = this.$route.params.articleno;
+    console.log(this.articleno + "zzzzzzzzzz");
     this.$store.dispatch("getComments", this.$route.params.articleno);
   },
   methods: {
