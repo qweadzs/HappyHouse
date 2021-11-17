@@ -12,7 +12,7 @@
     </div>
     <div v-else class="regist_form">
       <textarea name="comment" v-model="comment" cols="35" rows="2"></textarea>
-      <button @click="registComment">등록</button>
+      <button @click="registComment(article_no)">등록</button>
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@
 import http from "@/util/http-common.js";
 export default {
   props: {
-    article_no: String,
+    article_no: Number,
     modifyComment: Object,
   },
   data() {
@@ -33,7 +33,8 @@ export default {
   },
 
   methods: {
-    registComment() {
+    registComment(data) {
+      console.log(data + "바껴야할 !!");
       http
         .post("/comment", {
           user_name: this.user_name,

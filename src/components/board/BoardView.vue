@@ -41,6 +41,7 @@
     <comment-write
       v-if="isModifyShow && modifyComment != null"
       :modifyComment="modifyComment"
+      :article_no="this.$route.params.articleno"
       @modify-comment-cancel="onModifyCommentCancel"
     />
     <comment
