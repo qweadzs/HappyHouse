@@ -14,6 +14,7 @@ export default new Vuex.Store({
   },
   getters: {
     comments(state) {
+      console.log(state);
       return state.comments;
     },
   },
@@ -99,6 +100,7 @@ export default new Vuex.Store({
       http
         .get("/comment/" + payload)
         .then(({ data }) => {
+          console.log(data);
           commit("SET_COMMENTS", data);
         })
         .catch(() => {

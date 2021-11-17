@@ -33,7 +33,6 @@ export default {
   },
 
   methods: {
-    // 입력값 체크하기 - 체크가 성공하면 modifyBook 호출
     registComment() {
       http
         .post("/comment", {
@@ -53,7 +52,6 @@ export default {
     },
 
     updateComment() {
-
       http
         .put(`/comment`, {
           comment_no: this.modifyComment.comment_no,
