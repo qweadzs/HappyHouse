@@ -49,15 +49,18 @@ export default {
   data() {
     return {
       article: {},
+      isModifyShow: false,
+      modifyComment: Object,
     };
   },
+
   computed: {
     message() {
       if (this.article.content)
         return this.article.content.split("\n").join("<br>");
       return "";
     },
-    ...mapGetters(["article"]),
+    ...mapGetters(["comments"]),
     // changeDateFormat() {
     //   return moment(new Date(this.article.regtime)).format(
     //     "YYYY.MM.DD hh:mm:ss"
@@ -68,6 +71,8 @@ export default {
     http.get(`/board/${this.$route.params.articleno}`).then(({ data }) => {
       this.article = data;
     });
+    console.log(this.$route.params.articleno);
+    this.$store.dispatch("getComments", this.$route.params.articleno);
   },
   methods: {
     listArticle() {
@@ -87,6 +92,13 @@ export default {
           params: { articleno: this.article.articleno },
         });
       }
+    },
+    onModifyComment(comment) {
+      this.isModifyShow = true;
+      this.modifyComment = comment;
+    },
+    onModifyCommentCancel(isShow) {
+      this.isModifyShow = isShow;
     },
   },
 };
