@@ -29,17 +29,19 @@ export default {
       // 차후 작성자 이름은 로그인 구현후 로그인한 사용자로 바꾼다.
       user_name: "오싸피",
       comment: "",
+      tmp: Number,
     };
   },
 
   methods: {
     registComment() {
-      console.log(this.$route.params.articleNo + "바껴야할 !!");
+      console.log(this.$route.params.articleno + "바껴야할 !!");
+      this.tmp = this.$route.params.articleno;
       http
         .post("/comment", {
           user_name: this.user_name,
           comment: this.comment,
-          articleNo: this.articleNo,
+          articleNo: this.tmp,
         })
         .then(({ data }) => {
           let msg = "등록 처리시 문제가 발생했습니다.";
@@ -48,7 +50,7 @@ export default {
           }
           alert(msg);
           this.comment = "";
-          this.$store.dispatch("getComments", this.articleNo);
+          this.$store.dispatch("getComments", this.tmp);
         });
     },
 
