@@ -12,7 +12,7 @@
     </div>
     <div v-else class="regist_form">
       <textarea name="comment" v-model="comment" cols="35" rows="2"></textarea>
-      <button @click="registComment()">등록</button>
+      <button @click="registComment">등록</button>
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@
 import http from "@/util/http-common.js";
 export default {
   props: {
-    article_no: Number,
+    articleNo: Number,
     modifyComment: Object,
   },
   data() {
@@ -29,20 +29,17 @@ export default {
       // 차후 작성자 이름은 로그인 구현후 로그인한 사용자로 바꾼다.
       user_name: "오싸피",
       comment: "",
-      articleNo: Number,
     };
   },
 
   methods: {
     registComment() {
-      this.tmp = this.$route.params.articleno;
-      console.log(this.$route.params.articleno + "바껴야할 !!");
-      console.log(this.tmp + "바껴야할 !!");
+      console.log(this.$route.params.articleNo + "바껴야할 !!");
       http
         .post("/comment", {
           user_name: this.user_name,
           comment: this.comment,
-          articleNo: this.tmp,
+          articleNo: this.articleNo,
         })
         .then(({ data }) => {
           let msg = "등록 처리시 문제가 발생했습니다.";
@@ -67,7 +64,8 @@ export default {
             msg = "수정이 완료되었습니다.";
           }
           alert(msg);
-          this.$store.dispatch("getComments", this.modifyComment.article_no);
+          console.log();
+          this.$store.dispatch("getComments", this.modifyComment.articleNo);
           this.updateCommentCancel();
         });
     },

@@ -31,7 +31,7 @@ export default {
       this.$emit("modify-comment", {
         comment_no: this.comment.comment_no,
         comment: this.comment.comment,
-        article_no: this.comment.article_no,
+        articleNo: this.comment.articleNo,
       });
     },
     getFormatDate(regtime) {
@@ -49,7 +49,7 @@ export default {
           msg = "삭제이 완료되었습니다.";
         }
         alert(msg);
-        this.$store.dispatch("getComments", this.comment.article_no);
+        this.$store.dispatch("getComments", this.comment.articleNo);
       });
     },
   },
