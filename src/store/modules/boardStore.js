@@ -1,3 +1,5 @@
+import http from "@/util/http-common.js";
+
 const boardStore = {
   namespaced: true,
   state: {
