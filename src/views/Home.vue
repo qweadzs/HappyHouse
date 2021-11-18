@@ -9,11 +9,19 @@
           text-variant="dark"
           border-variant="dark"
         >
-          <template #header>Happy House</template>
+          <template #header>SSAFY Home</template>
+
+          <template #lead>
+            슬기로운 싸피 생활 (:6기편) <br />
+            열정 하~~~~앗 Six!!!!!
+          </template>
 
           <hr class="my-4" />
 
-          <p><b>박현우 정광균</b></p>
+          <p>Vue + Bootstrap활용.</p>
+          <p>Bootstrap-vue는 버전 <b>4.5.3</b>을 권장합니다.</p>
+          <p><b>BoardList.vue</b>를 바꿔가면서 테스트하세요.</p>
+          <p>Bootstrap의 <b>table</b> 사용법을 익히게됩니다.</p>
         </b-jumbotron>
       </b-col>
       <b-col></b-col>

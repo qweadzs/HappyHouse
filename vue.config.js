@@ -1,4 +1,3 @@
 module.exports = {
-  outputDir: "static",
-  publicPath: "/happyhouse",
+  transpileDependencies: ["vuetify"],
 };

@@ -13,44 +13,36 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col v-if="articles.length">
-        <b-table-simple hover responsive>
-          <b-thead head-variant="dark">
-            <b-tr>
-              <b-th>글번호</b-th>
-              <b-th>제목</b-th>
-              <b-th>조회수</b-th>
-              <b-th>작성자</b-th>
-              <b-th>작성일</b-th>
-            </b-tr>
-          </b-thead>
-          <tbody>
-            <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-            <board-list-row
-              v-for="(article, index) in articles"
-              :key="index"
-              v-bind="article"
-            />
-          </tbody>
-        </b-table-simple>
+      <b-col>
+        <b-table
+          striped
+          hover
+          :items="articles"
+          :fields="fields"
+          @row-clicked="viewArticle"
+        >
+        </b-table>
       </b-col>
-      <!-- <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> -->
     </b-row>
   </b-container>
 </template>
 
 <script>
-import BoardListRow from "@/components/board/child/BoardListRow";
-import { listArticle } from "@/api/board.js";
+import { listArticle } from "@/api/board";
 
 export default {
   name: "BoardList",
-  components: {
-    BoardListRow,
-  },
+  components: {},
   data() {
     return {
       articles: [],
+      fields: [
+        { key: "articleno", label: "글번호", tdClass: "tdClass" },
+        { key: "subject", label: "제목", tdClass: "tdSubject" },
+        { key: "userid", label: "작성자", tdClass: "tdClass" },
+        { key: "regtime", label: "작성일", tdClass: "tdClass" },
+        { key: "hit", label: "조회수", tdClass: "tdClass" },
+      ],
     };
   },
   created() {
@@ -73,6 +65,12 @@ export default {
   methods: {
     moveWrite() {
       this.$router.push({ name: "BoardWrite" });
+    },
+    viewArticle(article) {
+      this.$router.push({
+        name: "BoardView",
+        params: { articleno: article.articleno },
+      });
     },
   },
 };
