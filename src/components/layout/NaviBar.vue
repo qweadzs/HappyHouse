@@ -1,10 +1,9 @@
 <template>
   <div>
-    <!-- <v-card class="mx-auto overflow-hidden" height="400">
     <v-app-bar color="deep-purple" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Title</v-toolbar-title>
+      <v-toolbar-title>Happy House</v-toolbar-title>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" absolute temporary>
@@ -13,105 +12,65 @@
           v-model="group"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item>
+          <v-list-item router-link :to="{ name: 'Home' }">
             <v-list-item-icon>
               <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item router-link :to="{ name: 'SignUp' }">
+            <v-list-item-icon>
+              <v-icon>mdi-account-plus</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>회원 가입</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item v-if="!userInfo" router-link :to="{ name: 'SignIn' }">
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Account</v-list-item-title>
+            <v-list-item-title>로그인</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item v-if="userInfo" router-link :to="{ name: 'MyPage' }">
+            <v-list-item-icon>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>내 정보</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item v-if="userInfo" router-link :to="{ name: 'Board' }">
+            <v-list-item-icon>
+              <v-icon>mdi-developer-board</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>게시판</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item router-link :to="{ name: 'House' }">
+            <v-list-item-icon>
+              <v-icon>mdi-home-city-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>아파트 조회</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item v-if="userInfo" @click.prevent="onClickLogout">
+            <v-list-item-icon>
+              <v-icon>mdi-logout-variant</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>로그아웃</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-  </v-card> -->
-    <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="#">
-        <router-link to="/">
-          <img
-            src="@/assets/ssafy_logo.png"
-            class="d-inline-block align-middle"
-            width="90px"
-            alt="Kitten"
-          />
-        </router-link>
-      </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item href="#"
-            ><router-link :to="{ name: 'Home' }" class="link"
-              ><b-icon icon="house" font-scale="1"></b-icon> HOME</router-link
-            ></b-nav-item
-          >
-          <b-nav-item href="#"
-            ><router-link :to="{ name: 'Board' }" class="link"
-              ><b-icon icon="journal" font-scale="1"></b-icon>
-              게시판</router-link
-            ></b-nav-item
-          >
-          <b-nav-item href="#"
-            ><router-link :to="{ name: 'Instargram' }" class="link"
-              ><b-icon icon="instagram" font-scale="1"></b-icon>
-              인별그램</router-link
-            ></b-nav-item
-          >
-          <b-nav-item href="#"
-            ><router-link :to="{ name: 'House' }" class="link"
-              ><b-icon icon="house-fill" font-scale="1"></b-icon>
-              아파트정보</router-link
-            ></b-nav-item
-          >
-        </b-navbar-nav>
-
-        <b-navbar-nav class="ml-auto" v-if="userInfo">
-          <b-nav-item class="align-self-center"
-            ><b-avatar
-              variant="primary"
-              v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
-            ></b-avatar
-            >{{ userInfo.username }}({{ userInfo.userid }})님
-            환영합니다.</b-nav-item
-          >
-          <b-nav-item class="align-self-center"
-            ><router-link
-              :to="{ name: 'MyPage' }"
-              class="link align-self-center"
-              >내정보보기</router-link
-            ></b-nav-item
-          >
-          <b-nav-item
-            class="link align-self-center"
-            @click.prevent="onClickLogout"
-            >로그아웃</b-nav-item
-          >
-        </b-navbar-nav>
-        <b-navbar-nav class="ml-auto" v-else>
-          <b-nav-item-dropdown right>
-            <template #button-content>
-              <b-icon icon="people" font-scale="2"></b-icon>
-            </template>
-            <b-dropdown-item href="#"
-              ><router-link :to="{ name: 'SignUp' }" class="link"
-                ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
-              ></b-dropdown-item
-            >
-            <b-dropdown-item href="#"
-              ><router-link :to="{ name: 'SignIn' }" class="link"
-                ><b-icon icon="key"></b-icon> 로그인</router-link
-              ></b-dropdown-item
-            >
-          </b-nav-item-dropdown>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+    <!-- <b-nav-item class="align-self-center"
+      ><b-avatar
+        variant="primary"
+        v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
+      ></b-avatar
+      >{{ userInfo.username }}({{ userInfo.userid }})님 환영합니다.</b-nav-item
+    > -->
   </div>
 </template>
 
