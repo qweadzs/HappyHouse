@@ -1,32 +1,22 @@
 <template>
-  <v-footer>
-    <v-form v-model="valid" align-center>
-      <strong>
-        <v-container>
-          <v-row align="center">
-            <v-col cols="12" md="4">
-              <v-text-field
-                v-model="firstname"
-                :rules="nameRules"
-                :counter="10"
-                label="이름1"
-                required
-              ></v-text-field>
-            </v-col>
+  <v-footer absolute class="overflow-hidden" justify-center>
+    <div class="text-center mb-8">
+      <v-btn color="deep-purple" outlined @click="active = !active">
+        More
+      </v-btn>
+    </div>
 
-            <v-col cols="12" md="4">
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                label="E-mail"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-btn elevation="2">구독하기</v-btn>
-          </v-row>
-        </v-container>
-      </strong>
-    </v-form>
+    <v-bottom-navigation v-model="value" :input-value="active" color="indigo">
+      <v-btn>
+        <span>커피 사주기</span>
+        <v-icon>mdi-coffee</v-icon>
+      </v-btn>
+
+      <v-btn>
+        <span>구독하기</span>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
   </v-footer>
 </template>
 
