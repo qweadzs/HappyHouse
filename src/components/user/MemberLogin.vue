@@ -75,7 +75,7 @@ export default {
   methods: {
     ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
     async confirm() {
-      await this.userConfirm(this.user);
+      await this.userConfirm(this.user); // 토큰 얻어오기
       let token = sessionStorage.getItem("access-token");
       if (this.isLogin) {
         await this.getUserInfo(token);

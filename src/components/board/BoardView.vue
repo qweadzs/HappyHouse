@@ -37,37 +37,17 @@
         </b-card>
       </b-col>
     </b-row>
-    <comment-write :articleno="this.articleno" />
-    <comment-write
-      v-if="isModifyShow && modifyComment != null"
-      :modifyComment="modifyComment"
-      @modify-comment-cancel="onModifyCommentCancel"
-    />
-    <comment
-      v-for="(comment, index) in comments"
-      :key="index"
-      :comment="comment"
-      @modify-comment="onModifyComment"
-    />
   </b-container>
 </template>
 
 <script>
 // import moment from "moment";
-const boardStore = "boardStore";
-import Comment from "@/components/board/child/comment/Comment.vue";
-import CommentWrite from "@/components/board/child/comment/CommentWrite.vue";
 import { getArticle, deleteArticle } from "@/api/board";
-import { mapGetters } from "vuex";
 
 export default {
-  components: { CommentWrite, Comment },
   data() {
     return {
       article: {},
-      isModifyShow: false,
-      modifyComment: Object,
-      articleno: Number,
     };
   },
   computed: {
@@ -81,7 +61,6 @@ export default {
     //     "YYYY.MM.DD hh:mm:ss"
     //   );
     // },
-    ...mapGetters(boardStore, ["boardStore"]),
   },
   created() {
     getArticle(
@@ -93,9 +72,6 @@ export default {
         console.log("삭제시 에러발생!!", error);
       }
     );
-    this.articleno = this.$route.params.articleno;
-    console.log(this.articleno + "zzzzzzzzzz");
-    this.$store.dispatch("getComments", this.$route.params.articleno);
   },
   methods: {
     listArticle() {
@@ -114,13 +90,6 @@ export default {
           this.$router.push({ name: "BoardList" });
         });
       }
-    },
-    onModifyComment(comment) {
-      this.isModifyShow = true;
-      this.modifyComment = comment;
-    },
-    onModifyCommentCancel(isShow) {
-      this.isModifyShow = isShow;
     },
   },
 };
