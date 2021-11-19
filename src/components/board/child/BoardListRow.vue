@@ -3,7 +3,7 @@
     <b-td>{{ articleno }}</b-td>
     <b-th class="text-left">
       <router-link
-        :to="{ name: 'BoardView', params: { articleno: articleno } }"
+        :to="{ name: 'BoardView', params: { articleno: this.articleno } }"
         >{{ subject }}</router-link
       >
     </b-th>

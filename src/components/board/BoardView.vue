@@ -59,16 +59,22 @@ import { getArticle, deleteArticle } from "@/api/board";
 // import { commentList } from "@/api/comment";
 import { mapActions, mapGetters } from "vuex";
 import Comment from "@/components/board/child/comment/Comment";
+import CommentWrite from "@/components/board/child/comment/CommentWrite";
 
 const commentStore = "commentStore";
+
 export default {
   data() {
     return {
       article: {},
+      articleno: "",
+      isModifyShow: false,
+      modifyComment: Object,
     };
   },
   components: {
     Comment,
+    CommentWrite,
   },
   computed: {
     // ...mapState(commentStore, ["comments"]),
@@ -88,6 +94,7 @@ export default {
     getArticle(
       this.$route.params.articleno,
       (response) => {
+        console.log("BoardView ano = " + this.articleno);
         this.article = response.data;
       },
       (error) => {

@@ -16,6 +16,8 @@
 
 <script>
 import moment from "moment";
+import { mapActions } from "vuex";
+const commentStore = "commentStore";
 export default {
   props: {
     comment: Object,
@@ -26,6 +28,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(commentStore, ["deleteComment"]),
     modifyCommentView() {
       this.$emit("modify-comment", {
         comment_no: this.comment.comment_no,

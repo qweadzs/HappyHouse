@@ -6,9 +6,15 @@ const api = apiInstance();
 function commentList(articleno, success, fail) {
   api.get(`/comment/${articleno}`).then(success).catch(fail);
 }
+function writeComment(comment, success, fail) {
+  api.post(`/comment`, JSON.stringify(comment)).then(success).catch(fail);
+}
 // commentNo에 해당하는 댓글을 삭제한다.
 function deleteComment(commentNo, success, fail) {
   api.delete(`/comment/${commentNo}`).then(success).catch(fail);
 }
+function modifyComment(comment, success, fail) {
+  api.put(`/comment`, JSON.stringify(comment)).then(success).catch(fail);
+}
 
-export { commentList, deleteComment };
+export { commentList, deleteComment, writeComment, modifyComment };

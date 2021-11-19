@@ -25,12 +25,17 @@
 </template>
 
 <script>
-import http from "@/util/http-common.js";
+import { mapActions, mapGetters } from "vuex";
+const commentStore = "commentStore";
 export default {
   props: {
-    isbn: String,
+    articleno: String,
     modifyComment: Object,
   },
+  computed: {
+    ...mapGetters(commentStore, ["comments"]),
+  },
+  created: {},
   data() {
     return {
       // 차후 작성자 이름은 로그인 구현후 로그인한 사용자로 바꾼다.
@@ -39,43 +44,14 @@ export default {
     };
   },
   methods: {
+    ...mapActions(commentStore, ["writeComment"]),
     registComment() {
-      http
-        .post("/comment", {
-          user_name: this.user_name,
-          comment: this.comment,
-          isbn: this.isbn,
-        })
-        .then(({ data }) => {
-          let msg = "등록 처리시 문제가 발생했습니다.";
-          if (data === "success") {
-            msg = "등록이 완료되었습니다.";
-          }
-          alert(msg);
-          this.comment = "";
-          this.$store.dispatch("getComments", this.isbn);
-        });
-    },
-    updateComment() {
-      // axios.put("http://localhost:8888/vuews/book/"+this.$route.query.isbn,{
-      http
-        .put(`/comment`, {
-          comment_no: this.modifyComment.comment_no,
-          comment: this.modifyComment.comment,
-        })
-        .then(({ data }) => {
-          let msg = "수정 처리시 문제가 발생했습니다.";
-          if (data === "success") {
-            msg = "수정이 완료되었습니다.";
-          }
-          alert(msg);
-          this.$store.dispatch("getComments", this.modifyComment.isbn);
-          this.updateCommentCancel();
-        });
-    },
-    updateCommentCancel() {
-      // 부모 컴포넌트의 modify-comment-cancel에 false를 리턴.
-      this.$emit("modify-comment-cancel", false);
+      console.log(this.articleno);
+      this.writeComment({
+        user_name: this.user_name,
+        comment: this.comment,
+        articleno: this.articleno,
+      });
     },
   },
 };
