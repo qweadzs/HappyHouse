@@ -38,12 +38,12 @@
       </b-col>
     </b-row>
 
-    <!-- <comment-write :isbn="isbn" />
+    <comment-write :articleno="articleno" />
     <comment-write
       v-if="isModifyShow && modifyComment != null"
       :modifyComment="modifyComment"
       @modify-comment-cancel="onModifyCommentCancel"
-    /> -->
+    />
     <comment
       v-for="(comment, index) in comments"
       :key="index"
@@ -57,7 +57,7 @@
 // import moment from "moment";
 import { getArticle, deleteArticle } from "@/api/board";
 // import { commentList } from "@/api/comment";
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Comment from "@/components/board/child/comment/Comment";
 
 const commentStore = "commentStore";
@@ -71,7 +71,7 @@ export default {
     Comment,
   },
   computed: {
-    ...mapState(commentStore, ["comments"]),
+    // ...mapState(commentStore, ["comments"]),
     ...mapGetters(commentStore, ["comments"]),
     message() {
       if (this.article.content)
@@ -116,6 +116,13 @@ export default {
           this.$router.push({ name: "BoardList" });
         });
       }
+    },
+    onModifyComment(comment) {
+      this.isModifyShow = true;
+      this.modifyComment = comment;
+    },
+    onModifyCommentCancel(isShow) {
+      this.isModifyShow = isShow;
     },
   },
 };
