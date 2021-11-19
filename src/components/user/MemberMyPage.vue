@@ -47,7 +47,12 @@
           </b-container>
           <hr class="my-4" />
 
-          <b-button variant="primary" href="#" class="mr-1">정보수정</b-button>
+          <b-button
+            variant="primary"
+            @click="moveUpdate(userInfo.userid)"
+            class="mr-1"
+            >정보수정</b-button
+          >
           <b-button variant="danger" @click="removeUser(userInfo.userid)"
             >회원탈퇴</b-button
           >
@@ -83,6 +88,13 @@ export default {
           if (this.$route.path != "/") this.$router.push({ name: "Home" });
         });
       }
+    },
+    moveUpdate(data) {
+      if (this.$route.path != "/")
+        this.$router.push({
+          name: "Update",
+          params: { userid: data },
+        });
     },
   },
 };
