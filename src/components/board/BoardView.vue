@@ -37,20 +37,42 @@
         </b-card>
       </b-col>
     </b-row>
+
+    <!-- <comment-write :isbn="isbn" />
+    <comment-write
+      v-if="isModifyShow && modifyComment != null"
+      :modifyComment="modifyComment"
+      @modify-comment-cancel="onModifyCommentCancel"
+    /> -->
+    <comment
+      v-for="(comment, index) in comments"
+      :key="index"
+      :comment="comment"
+      @modify-comment="onModifyComment"
+    />
   </b-container>
 </template>
 
 <script>
 // import moment from "moment";
 import { getArticle, deleteArticle } from "@/api/board";
+// import { commentList } from "@/api/comment";
+import { mapState, mapGetters, mapActions } from "vuex";
+import Comment from "@/components/board/child/comment/Comment";
 
+const commentStore = "commentStore";
 export default {
   data() {
     return {
       article: {},
     };
   },
+  components: {
+    Comment,
+  },
   computed: {
+    ...mapState(commentStore, ["comments"]),
+    ...mapGetters(commentStore, ["comments"]),
     message() {
       if (this.article.content)
         return this.article.content.split("\n").join("<br>");
@@ -72,8 +94,12 @@ export default {
         console.log("삭제시 에러발생!!", error);
       }
     );
+    this.getComments(this.$route.params.articleno);
   },
   methods: {
+    ...mapActions(commentStore, ["getComments"]),
+    // ...mapMutations(commentStore, ["SET_COMMENTS"]),
+    // ...mapActions(commentStore, ["getComments"]),
     listArticle() {
       this.$router.push({ name: "BoardList" });
     },
