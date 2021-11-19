@@ -48,7 +48,9 @@
           <hr class="my-4" />
 
           <b-button variant="primary" href="#" class="mr-1">정보수정</b-button>
-          <b-button variant="danger" href="#">회원탈퇴</b-button>
+          <b-button variant="danger" @click="removeUser(userInfo.userid)"
+            >회원탈퇴</b-button
+          >
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
@@ -57,7 +59,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
+import { deleteUser } from "@/api/member";
 
 const memberStore = "memberStore";
 
@@ -65,7 +68,22 @@ export default {
   name: "MemberMyPage",
   components: {},
   computed: {
-    ...mapState(memberStore, ["userInfo"]),
+    ...mapState(memberStore, ["isLogin", "userInfo"]),
+  },
+  methods: {
+    ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
+    removeUser(data) {
+      if (confirm("정말로 삭제?")) {
+        console.log(data);
+        deleteUser(data, () => {
+          this.SET_IS_LOGIN(false);
+          this.SET_USER_INFO(null);
+          sessionStorage.removeItem("access-token");
+          alert("삭제가 완료되었습니다.");
+          if (this.$route.path != "/") this.$router.push({ name: "Home" });
+        });
+      }
+    },
   },
 };
 </script>

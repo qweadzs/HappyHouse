@@ -11,6 +11,9 @@ async function signupUser(user, success, fail) {
     .then(success)
     .catch(fail);
 }
+function deleteUser(userid, success, fail) {
+  api.delete(`/user/${userid}`).then(success).catch(fail);
+}
 
 async function findById(userid, success, fail) {
   api.defaults.headers["access-token"] = sessionStorage.getItem("access-token");
@@ -19,4 +22,4 @@ async function findById(userid, success, fail) {
 
 // function logout(success, fail)
 
-export { login, signupUser, findById };
+export { login, signupUser, deleteUser, findById };
