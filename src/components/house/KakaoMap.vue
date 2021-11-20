@@ -255,6 +255,7 @@ export default {
 
     // 각 카테고리에 클릭 이벤트를 등록합니다
     addCategoryClickEvent() {
+      console.log("addCategoryClickEvent");
       var category = document.getElementById("category"),
         children = category.children;
 
@@ -265,6 +266,7 @@ export default {
 
     // 카테고리를 클릭했을 때 호출되는 함수입니다
     onClickCategory() {
+      console.log("onClickCategory");
       var id = this.id,
         className = this.className;
 

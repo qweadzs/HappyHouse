@@ -12,7 +12,7 @@
       <b-col cols="6">
         <house-detail />
       </b-col>
-      <b-col cols="6" align="right">
+      <b-col cols="6" align="right" rows="6" class="overflow-hidden">
         <house-list />
       </b-col>
     </b-row>
