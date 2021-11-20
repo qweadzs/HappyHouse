@@ -9,19 +9,21 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col cols="6" align="left">
-        <house-list />
-      </b-col>
       <b-col cols="6">
         <house-detail />
       </b-col>
+      <b-col cols="6" align="right">
+        <house-list />
+      </b-col>
     </b-row>
+    <kakao-map />
   </b-container>
 </template>
 <script>
 import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 import HouseList from "@/components/house/HouseList.vue";
 import HouseDetail from "@/components/house/HouseDetail.vue";
+import KakaoMap from "@/components/house/KakaoMap.vue";
 
 export default {
   name: "House",
@@ -29,6 +31,7 @@ export default {
     HouseSearchBar,
     HouseList,
     HouseDetail,
+    KakaoMap,
   },
 };
 </script>

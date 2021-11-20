@@ -52,6 +52,7 @@ export default {
         articleNo: this.$route.params.articleno,
       });
       this.comment = "";
+      this.$router.go();
     },
     updateComment() {
       this.updComment(this.modifyComment);
