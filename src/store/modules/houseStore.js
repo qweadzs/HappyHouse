@@ -75,11 +75,12 @@ const houseStore = {
         LAWD_CD: gugunCode,
         DEAL_YMD: "202110",
         serviceKey: decodeURIComponent(SERVICE_KEY),
+        numOfRows: 200,
       };
       houseList(
         params,
         (response) => {
-          //   console.log(response.data.response.body.items.item);
+          // console.log(response.data.response.body.items.item);
           commit("SET_HOUSE_LIST", response.data.response.body.items.item);
         },
         (error) => {
