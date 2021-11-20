@@ -28,13 +28,16 @@ export default {
     };
   },
   methods: {
-    ...mapActions(commentStore, ["deleteComment"]),
+    ...mapActions(commentStore, ["delComment"]),
     modifyCommentView() {
       this.$emit("modify-comment", {
         comment_no: this.comment.comment_no,
         comment: this.comment.comment,
         articleno: this.comment.articleno,
       });
+    },
+    deleteComment() {
+      this.delComment(this.comment.comment_no);
     },
     getFormatDate(regtime) {
       return moment(new Date(regtime)).format("YYYY-MM-DD HH:mm:ss");

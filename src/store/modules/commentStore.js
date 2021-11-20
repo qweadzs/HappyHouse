@@ -25,6 +25,7 @@ const commentStore = {
         articleno,
         ({ data }) => {
           console.log(commit);
+          console.log("getComments 실행");
           commit("SET_COMMENTS", data);
         },
         (error) => {
@@ -32,42 +33,38 @@ const commentStore = {
         }
       );
     },
-    registComment: (comment, dispatch) => {
-      console.log("뭐야");
+    regComment: ({ commit }, comment) => {
       writeComment(comment, ({ data }) => {
+        console.log(commit);
         let msg = "등록 처리시 문제가 발생했습니다.";
         if (data === "success") {
           msg = "등록이 완료되었습니다.";
         }
         alert(msg);
-        this.comment = "";
-        dispatch("getComments(comment.articleno)");
+        // console.log(comment.articleNo);
+        // commentStore.actions.getComments(comment.articleNo);
+        // this.$store.dispatch("getComments", comment.articleNo);
       });
     },
-    updateComment: (comment, dispatch) => {
+    updComment: ({ commit }, comment) => {
       modifyComment(comment, ({ data }) => {
         let msg = "수정 처리시 문제가 발생했습니다.";
         if (data === "success") {
           msg = "수정이 완료되었습니다.";
         }
+        console.log(commit);
         alert(msg);
-        dispatch("getComments(comment.articleno)");
-        dispatch("updateCommentCancel");
       });
     },
-    deleteComment: (commentNo, dispatch) => {
+    delComment: ({ commit }, commentNo) => {
       deleteComment(commentNo, ({ data }) => {
         let msg = "삭제 처리시 문제가 발생했습니다.";
         if (data === "success") {
           msg = "삭제가 완료되었습니다.";
         }
+        console.log(commit);
         alert(msg);
-        dispatch("getComments(comment.articleno)");
       });
-    },
-    updateCommentCancel() {
-      // 부모 컴포넌트의 modify-comment-cancel에 false를 리턴.
-      this.$emit("modify-comment-cancel", false);
     },
   },
 };

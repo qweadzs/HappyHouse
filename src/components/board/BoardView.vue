@@ -94,7 +94,7 @@ export default {
     getArticle(
       this.$route.params.articleno,
       (response) => {
-        console.log("BoardView ano = " + this.articleno);
+        console.log("BoardView ano = " + this.$route.params.articleno);
         this.article = response.data;
       },
       (error) => {

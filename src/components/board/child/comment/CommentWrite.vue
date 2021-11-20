@@ -25,15 +25,15 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 const commentStore = "commentStore";
 export default {
   props: {
-    articleno: String,
     modifyComment: Object,
   },
   computed: {
     ...mapGetters(commentStore, ["comments"]),
+    ...mapState(commentStore, ["comments"]),
   },
   created: {},
   data() {
@@ -44,14 +44,20 @@ export default {
     };
   },
   methods: {
-    ...mapActions(commentStore, ["writeComment"]),
+    ...mapActions(commentStore, ["regComment", "getComments", "updComment"]),
     registComment() {
-      console.log(this.articleno);
-      this.writeComment({
+      this.regComment({
         user_name: this.user_name,
         comment: this.comment,
-        articleno: this.articleno,
+        articleNo: this.$route.params.articleno,
       });
+      this.comment = "";
+    },
+    updateComment() {
+      this.updComment(this.modifyComment);
+    },
+    updateCommentCancel() {
+      this.$emit("modify-comment-cancel", false);
     },
   },
 };
