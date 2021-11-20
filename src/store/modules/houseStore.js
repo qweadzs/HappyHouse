@@ -80,7 +80,7 @@ const houseStore = {
       houseList(
         params,
         (response) => {
-          //   console.log(response.data.response.body.items.item);
+          // console.log(response.data.response.body.items.item);
           commit("SET_HOUSE_LIST", response.data.response.body.items.item);
         },
         (error) => {
