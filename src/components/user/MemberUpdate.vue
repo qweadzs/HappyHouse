@@ -2,7 +2,9 @@
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert variant="secondary" show><h3>회원정보 수정</h3></b-alert>
+        <b-alert variant="secondary" show
+          ><h3>{{ user.userid }}님 회원정보 수정</h3></b-alert
+        >
       </b-col>
     </b-row>
     <b-row>
@@ -10,15 +12,6 @@
       <b-col cols="8">
         <b-card class="text-center mt-3" style="max-width: 40rem" align="left">
           <b-form class="text-left" @submit="onSubmit">
-            <b-form-group label="아이디:" label-for="userid">
-              <b-form-input
-                id="userid"
-                v-model="user.userid"
-                required
-                placeholder="아이디 입력...."
-                @keyup.enter="confirm"
-              ></b-form-input>
-            </b-form-group>
             <b-form-group label="이름:" label-for="username">
               <b-form-input
                 id="username"

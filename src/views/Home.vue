@@ -1,24 +1,15 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-steelblue"><b-icon icon="house"></b-icon> SSAFY</h3>
-    <b-row>
-      <b-col></b-col>
-      <b-col cols="10">
-        <b-jumbotron
-          bg-variant="muted"
-          text-variant="dark"
-          border-variant="dark"
-        >
-          <template #header>Happy House</template>
-
-          <hr class="my-4" />
-
-          <b> COMING SOON...</b>
-        </b-jumbotron>
-      </b-col>
-      <b-col></b-col>
-    </b-row>
-  </b-container>
+  <v-container class="bv-example-row mt-2 text-center">
+    <v-carousel>
+      <v-carousel-item
+        v-for="(item, i) in items"
+        :key="i"
+        :src="item.src"
+        reverse-transition="fade-transition"
+      ></v-carousel-item>
+    </v-carousel>
+    <div>사진 적절한거 넣기 왜 왼쪽 오른쪽 버튼이 쏠렸는지... 모르겠삼</div>
+  </v-container>
 </template>
 
 <script>
@@ -26,6 +17,24 @@ export default {
   name: "Main",
   props: {
     msg: String,
+  },
+  data() {
+    return {
+      items: [
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+        },
+      ],
+    };
   },
 };
 </script>
