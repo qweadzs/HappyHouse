@@ -16,7 +16,7 @@
       style="width: 100%; height: 100%; position: relative; overflow: hidden"
     ></div>
     <ul id="category">
-      <li id="BK9" @click="moveTo" data-order="0">
+      <li id="BK9" data-order="0">
         <span class="category_bg bank"></span>
         은행
       </li>
@@ -45,7 +45,8 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapState } from "vuex";
+// import { mapGetters, mapState } from "vuex";
 const houseStore = "houseStore";
 export default {
   name: "KakaoMap",
@@ -58,10 +59,18 @@ export default {
       address: "",
     };
   },
-  watch: {},
+  // props: {
+  //   house: Object,
+  // },
+  watch: {
+    geocoder: function () {
+      return this.convertToLoc(this.house);
+    },
+  },
   computed: {
     ...mapState(houseStore, ["house"]),
-    ...mapGetters(houseStore, ["house"]),
+    // ...mapGetters(houseStore, ["house"]),
+    // ...mapGetters(houseStore, ["house"]),
   },
   mounted() {
     if (window.kakao && window.kakao.maps) {
@@ -78,16 +87,17 @@ export default {
   },
   methods: {
     initMap() {
+      console.log("init");
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
         level: 5,
       };
       // const map = new kakao.maps.Map(container, options);
-      this.$store.state.houseStore.map = new kakao.maps.Map(container, options);
+      this.map = new kakao.maps.Map(container, options);
       this.moveLatLon = new kakao.maps.LatLng(36.35, 127.38); // 지도 위치 옮기는 변수
       console.log("house = " + this.house);
-      this.onvertToLoc(this.house);
+      this.convertToLoc(this.house);
     },
 
     // 지도 위치 옮기기 - 파라미터로 옮기는게 나을거같음

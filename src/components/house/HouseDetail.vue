@@ -6,7 +6,7 @@
       >
     </b-row>
     <b-row class="mb-2 mt-1">
-      <b-col><KakaoMap /> </b-col>
+      <b-col><KakaoMap :house="house" /> </b-col>
     </b-row>
     <b-row>
       <b-col>
@@ -58,6 +58,7 @@ export default {
   },
   computed: {
     ...mapState(houseStore, ["house"]),
+    KakaoMap,
     // house() {
     //   return this.$store.state.house;
     // },

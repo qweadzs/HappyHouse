@@ -17,7 +17,7 @@
 export default {
   name: "Main",
   props: {
-    msg: String,
+    // msg: String,
   },
   data() {
     return {

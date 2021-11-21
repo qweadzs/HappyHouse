@@ -9,7 +9,11 @@ const houseStore = {
     house: null,
   },
 
-  getters: {},
+  getters: {
+    house(state) {
+      return state.house;
+    },
+  },
 
   mutations: {
     SET_SIDO_LIST: (state, sidos) => {
