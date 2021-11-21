@@ -48,14 +48,14 @@ export default {
   methods: {
     ...mapActions(commentStore, ["regComment", "getComments", "updComment"]),
     registComment() {
-      console.log(this.userInfo.userid + "rrrrrr");
+      console.log(this.userInfo);
       this.regComment({
-        user_name: this.userInfo.userid,
+        user_name: this.userInfo.username,
         comment: this.comment,
         articleNo: this.$route.params.articleno,
       });
       this.comment = "";
-      this.$router.go();
+      // this.$router.go();
     },
     updateComment() {
       this.updComment(this.modifyComment);

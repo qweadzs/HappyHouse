@@ -16,8 +16,9 @@
 
 <script>
 import moment from "moment";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 const commentStore = "commentStore";
+const memberStore = "memberStore";
 export default {
   props: {
     comment: Object,
@@ -26,6 +27,9 @@ export default {
     return {
       isShow: true,
     };
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
   },
   methods: {
     ...mapActions(commentStore, ["delComment"]),
