@@ -27,6 +27,7 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 const commentStore = "commentStore";
+const memberStore = "memberStore";
 export default {
   props: {
     modifyComment: Object,
@@ -34,20 +35,22 @@ export default {
   computed: {
     ...mapGetters(commentStore, ["comments"]),
     ...mapState(commentStore, ["comments"]),
+    ...mapState(memberStore, ["userInfo"]),
   },
   created: {},
   data() {
     return {
       // 차후 작성자 이름은 로그인 구현후 로그인한 사용자로 바꾼다.
-      user_name: "오싸피",
+      user_name: "",
       comment: "",
     };
   },
   methods: {
     ...mapActions(commentStore, ["regComment", "getComments", "updComment"]),
     registComment() {
+      console.log(this.userInfo.userid + "rrrrrr");
       this.regComment({
-        user_name: this.user_name,
+        user_name: this.userInfo.userid,
         comment: this.comment,
         articleNo: this.$route.params.articleno,
       });
