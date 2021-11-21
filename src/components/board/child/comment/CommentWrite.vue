@@ -56,6 +56,7 @@ export default {
     },
     updateComment() {
       this.updComment(this.modifyComment);
+      this.$router.go();
     },
     updateCommentCancel() {
       this.$emit("modify-comment-cancel", false);
