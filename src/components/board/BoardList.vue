@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <!-- <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
         <b-alert show><h3>글목록</h3></b-alert>
@@ -25,7 +25,7 @@
             </b-tr>
           </b-thead>
           <tbody>
-            <!-- 하위 component인 ListRow에 데이터 전달(props) -->
+             하위 component인 ListRow에 데이터 전달(props) 
             <board-list-row
               v-for="(article, index) in articles"
               :key="index"
@@ -34,9 +34,31 @@
           </tbody>
         </b-table-simple>
       </b-col>
-      <!-- <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> -->
+      <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> 
     </b-row>
-  </b-container>
+  </b-container> -->
+
+  <v-simple-table>
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th>글번호</th>
+          <th>제목</th>
+          <th>조회수</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th><v-btn @click="moveWrite()">글쓰기</v-btn></th>
+        </tr>
+      </thead>
+      <tbody>
+        <board-list-row
+          v-for="(article, index) in articles"
+          :key="index"
+          v-bind="article"
+        />
+      </tbody>
+    </template>
+  </v-simple-table>
 </template>
 
 <script>
