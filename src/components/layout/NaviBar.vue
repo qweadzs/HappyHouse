@@ -61,6 +61,13 @@
             <v-list-item-title>아파트 조회</v-list-item-title>
           </v-list-item>
 
+          <v-list-item v-if="userInfo" router-link :to="{ name: 'Mail' }">
+            <v-list-item-icon>
+              <v-icon>mdi-home-city-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>메일 보내기</v-list-item-title>
+          </v-list-item>
+
           <v-list-item v-if="userInfo" @click.prevent="onClickLogout">
             <v-list-item-icon>
               <v-icon>mdi-logout-variant</v-icon>
