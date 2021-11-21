@@ -148,6 +148,16 @@ export default {
           console.log(error);
         }
       );
+      getUser(
+        this.userInfo.userid,
+        ({ data }) => {
+          this.$store.state.memberStore.userInfo = data;
+          // console.log(data + "회원가입 데이터");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
     moveList() {
       this.$router.push({ name: "Home" });
