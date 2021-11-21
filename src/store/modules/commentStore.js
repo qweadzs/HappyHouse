@@ -44,6 +44,7 @@ const commentStore = {
         // console.log(comment.articleNo);
         // commentStore.actions.getComments(comment.articleNo);
         // this.$store.dispatch("getComments", comment.articleNo);
+        // dispatch("getComments", comment.articleNo);
       });
     },
     updComment: ({ commit }, comment) => {
@@ -54,6 +55,7 @@ const commentStore = {
         }
         console.log(commit);
         alert(msg);
+        // dispatch("getComments", comment.articleNo);
       });
     },
     delComment: ({ commit }, commentNo) => {
@@ -64,6 +66,7 @@ const commentStore = {
         }
         console.log(commit);
         alert(msg);
+        // dispatch("getComments", comment.articleNo);
       });
     },
   },
