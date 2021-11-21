@@ -12,14 +12,17 @@
       <button class="small" @click="updateComment">수정</button>
     </div>
     <div v-else class="regist_form">
-      <textarea
+      <v-text-field
+        label="댓글"
+        outlined
         name="comment"
         id="comment"
         v-model="comment"
-        cols="35"
-        rows="2"
+        cols="12"
+        sm="6"
+        md="3"
         @keyup.enter="registComment"
-      ></textarea>
+      ></v-text-field>
       <button class="small" @click="registComment">등록</button>
     </div>
   </div>
@@ -73,6 +76,7 @@ export default {
 textarea {
   width: 90%;
   font-size: large;
+  border: 1px;
 }
 button {
   float: right;
