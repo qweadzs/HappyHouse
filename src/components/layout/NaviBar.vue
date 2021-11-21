@@ -5,11 +5,11 @@
 
       <v-toolbar-title>Happy House</v-toolbar-title>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat v-if="userInfo" @click="moveMypage()"
+        <v-btn v-if="userInfo" @click="moveMypage()"
           >{{ userInfo.userid }}님 안녕하세요</v-btn
         >
         <v-btn v-if="!userInfo" flat @click="moveLogin()">로그인</v-btn>
-        <v-btn flat v-if="!userInfo" @click="moveSignUp()">회원가입</v-btn>
+        <v-btn v-if="!userInfo" @click="moveSignUp()">회원가입</v-btn>
       </v-toolbar-items>
     </v-app-bar>
 

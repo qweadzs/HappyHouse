@@ -6,9 +6,10 @@
         :key="i"
         :src="item.src"
         reverse-transition="fade-transition"
-      ></v-carousel-item>
+      >
+      </v-carousel-item>
     </v-carousel>
-    <div>사진 적절한거 넣기 왜 왼쪽 오른쪽 버튼이 쏠렸는지... 모르겠삼</div>
+    <div>니가산은(=)그집</div>
   </v-container>
 </template>
 
@@ -22,16 +23,16 @@ export default {
     return {
       items: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+          src: "https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_960_720.jpg",
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+          src: "https://cdn.pixabay.com/photo/2014/08/11/21/39/wall-416060_960_720.jpg",
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+          src: "https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041_960_720.jpg",
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+          src: "https://cdn.pixabay.com/photo/2017/08/27/10/16/interior-2685521_960_720.jpg",
         },
       ],
     };
