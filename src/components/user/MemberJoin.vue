@@ -59,7 +59,7 @@
               type="button"
               variant="primary"
               class="m-1"
-              @click="cancel"
+              @click="moveList"
               >취소</b-button
             >
           </b-form>
