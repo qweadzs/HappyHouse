@@ -142,17 +142,17 @@ export default {
             msg = "수정이 완료되었습니다.";
           }
           alert(msg);
+          getUser(
+            this.userInfo.userid,
+            ({ data }) => {
+              this.$store.state.memberStore.userInfo = data;
+              // console.log(data + "회원가입 데이터");
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
           this.moveList();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      getUser(
-        this.userInfo.userid,
-        ({ data }) => {
-          this.$store.state.memberStore.userInfo = data;
-          // console.log(data + "회원가입 데이터");
         },
         (error) => {
           console.log(error);
