@@ -18,6 +18,7 @@
         v-model="comment"
         cols="35"
         rows="2"
+        @keyup.enter="registComment"
       ></textarea>
       <button class="small" @click="registComment">등록</button>
     </div>
@@ -55,7 +56,7 @@ export default {
         articleNo: this.$route.params.articleno,
       });
       this.comment = "";
-      // this.$router.go();
+      this.$router.go();
     },
     updateComment() {
       this.updComment(this.modifyComment);
