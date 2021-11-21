@@ -6,7 +6,12 @@
     <div class="content" v-html="enterToBr(comment.comment)"></div>
     <!-- 로그인 기능 구현 후 로그인한 자신의 글에만 보이게 한다. -->
     <div class="cbtn">
-      <label @click="modifyCommentView">수정</label>|<label
+      <label
+        v-if="comment.user_name == userInfo.username"
+        @click="modifyCommentView"
+        >수정</label
+      >|<label
+        v-if="comment.user_name == userInfo.username"
         @click="deleteComment"
         >삭제</label
       >
