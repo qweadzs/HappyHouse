@@ -1,5 +1,5 @@
 <template>
-  <b-tr>
+  <!-- <b-tr>
     <b-td>{{ articleno }}</b-td>
     <b-th class="text-left">
       <router-link
@@ -10,7 +10,20 @@
     <b-td>{{ hit }}</b-td>
     <b-td>{{ userid }}</b-td>
     <b-td>{{ regtime }}</b-td>
-  </b-tr>
+  </b-tr> -->
+
+  <tr>
+    <td>{{ articleno }}</td>
+    <th>
+      <router-link
+        :to="{ name: 'BoardView', params: { articleno: this.articleno } }"
+        >{{ subject }}</router-link
+      >
+    </th>
+    <td>{{ hit }}</td>
+    <td>{{ userid }}</td>
+    <td>{{ regtime }}</td>
+  </tr>
 </template>
 
 <script>

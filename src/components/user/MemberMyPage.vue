@@ -1,5 +1,5 @@
 <template>
-  <b-container class="mt-4" v-if="userInfo">
+  <!-- <b-container class="mt-4" v-if="userInfo">
     <b-row>
       <b-col>
         <b-alert variant="secondary" show><h3>내정보</h3></b-alert>
@@ -60,7 +60,83 @@
       </b-col>
       <b-col></b-col>
     </b-row>
-  </b-container>
+  </b-container> -->
+
+  <v-row justify="center">
+    <v-col cols="12" sm="8">
+      <v-card>
+        <v-card-title class="cyan darken-1">
+          <span class="text-h5 white--text"
+            >{{ userInfo.userid }}님의 회원 정보</span
+          >
+          <v-btn
+            :disabled="loading"
+            class="ma-1"
+            color="grey"
+            plain
+            @click="moveUpdate(userInfo.userid)"
+          >
+            수정하기
+          </v-btn>
+
+          <v-btn
+            click="removeUser(userInfo.userid)"
+            :loading="loading"
+            class="ma-1"
+            color="error"
+            plain
+            @click="remove"
+          >
+            회원탈퇴
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-card-title>
+
+        <v-list>
+          <v-divider inset></v-divider>
+
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-phone</v-icon>
+            </v-list-item-action>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ userInfo.username }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider inset></v-divider>
+
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-email</v-icon>
+            </v-list-item-action>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ userInfo.email }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-divider inset></v-divider>
+
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>mdi-map-marker</v-icon>
+            </v-list-item-action>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ userInfo.joindate }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+
+        <v-img
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+          height="500px"
+        ></v-img>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
