@@ -9,7 +9,7 @@
       >
       </v-carousel-item>
     </v-carousel>
-    <div>니가산은(=)그집</div>
+    <div class="title">니가산은(=)그집</div>
   </v-container>
 </template>
 
@@ -41,6 +41,7 @@ export default {
 </script>
 
 <style scoped>
+@import url(https://fonts.googleapis.com.com/earlyaccess/nanumgothic.css);
 .underline-steelblue {
   display: inline-block;
   background: linear-gradient(
@@ -48,5 +49,10 @@ export default {
     rgba(255, 255, 255, 0) 70%,
     rgba(72, 190, 233, 0.3) 30%
   );
+}
+.title {
+  font-weight: 300;
+  font-family: serif;
+  font-size: 40px;
 }
 </style>
