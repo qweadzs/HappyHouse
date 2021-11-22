@@ -14,5 +14,9 @@ function gugunList(params, success, fail) {
 function houseList(params, success, fail) {
   house.get(``, { params: params }).then(success).catch(fail);
 }
+// 위시리스트 등록하기
+function wishregist(wishlist, success, fail) {
+  api.post(`/map`, JSON.stringify(wishlist)).then(success).catch(fail);
+}
 
-export { sidoList, gugunList, houseList };
+export { sidoList, gugunList, houseList, wishregist };

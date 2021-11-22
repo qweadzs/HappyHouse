@@ -33,6 +33,10 @@ function registSub(userid, success, fail) {
 }
 
 // function logout(success, fail)
+// 위시리스트 가져오기
+function listWish(userid, success, fail) {
+  api.get(`/user/wishlist/${userid}`).then(success).catch(fail);
+}
 
 export {
   login,
@@ -42,4 +46,5 @@ export {
   findById,
   modifyUser,
   registSub,
+  listWish,
 };

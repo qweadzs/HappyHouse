@@ -1,27 +1,27 @@
 <template>
-  <b-row
+  <v-row
     class="m-2"
     @click="selectHouse"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
   >
-    <b-col cols="2" class="text-center align-self-center">
-      <b-img
-        thumbnail
-        src="https://picsum.photos/250/250/?image=58"
-        alt="Image 1"
-      ></b-img>
-    </b-col>
-    <b-col cols="10" class="align-self-center">
+    <v-col cols="2" class="text-center align-self-center">
+      <v-btn @click="goregist" class="mx-2" fab dark small color="pink">
+        <v-icon dark> mdi-heart </v-icon>
+      </v-btn>
+    </v-col>
+    <v-col cols="10" class="align-self-center">
       [{{ house.일련번호 }}] {{ house.아파트 }}
-    </b-col>
-  </b-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
+import { wishregist } from "@/api/house";
 
+const memberStore = "memberStore";
 const houseStore = "houseStore";
 
 export default {
@@ -29,7 +29,19 @@ export default {
   data() {
     return {
       isColor: false,
+      userid: "",
+      aptCode: Number,
+      aptName: "",
+      dongCode: "",
+      dongName: "",
+      buildYear: Number,
+      jibun: "",
+      lat: "",
+      lng: "",
     };
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
   },
   props: {
     house: Object,
@@ -43,6 +55,35 @@ export default {
     },
     colorChange(flag) {
       this.isColor = flag;
+    },
+    goregist() {
+      console.log(this.house);
+      wishregist(
+        {
+          userid: this.userInfo.userid,
+          aptCode: this.house.일련번호,
+          aptName: this.house.아파트,
+          dongCode: this.house.법정동본번코드,
+          dongName: this.house.법정동,
+          buildYear: this.house.건축년도,
+          jibun: this.house.지번,
+          dealAmount: this.house.거래금액,
+          //일단 aptcode로 받아야하고
+          // aptcode 없는건 우짤까
+        },
+        ({ data }) => {
+          let msg = "등록 처리시 문제가 발생했습니다.";
+          if (data === "success") {
+            msg = "등록이 완료되었습니다.";
+          }
+          alert(msg);
+          this.moveList();
+        },
+        (error) => {
+          alert("아이디가 중복됩니다. 다른 아이디를 사용해주세요.");
+          console.log(error);
+        }
+      );
     },
   },
 };

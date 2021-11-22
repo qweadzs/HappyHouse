@@ -128,18 +128,30 @@
               <v-list-item-title>{{ userInfo.joindate }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-        </v-list>
 
-        <v-img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-          height="500px"
-        ></v-img>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon>info</v-icon>
+            </v-list-item-action>
+
+            <v-list-item-content>
+              <wish-list-row
+                v-for="(wishapt, index) in wishlist"
+                :key="index"
+                v-bind="wishapt"
+              />
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import WishListRow from "@/components/user/child/WishListRow";
+import { listWish } from "@/api/member.js";
+
 import { mapState, mapMutations } from "vuex";
 import { deleteUser } from "@/api/member";
 
@@ -147,7 +159,27 @@ const memberStore = "memberStore";
 
 export default {
   name: "MemberMyPage",
-  components: {},
+  components: {
+    WishListRow,
+  },
+
+  data() {
+    return {
+      wishlist: [],
+    };
+  },
+  created() {
+    console.log(this.userInfo.userid);
+    listWish(
+      this.userInfo.userid,
+      (response) => {
+        this.wishlist = response.data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  },
   computed: {
     ...mapState(memberStore, ["isLogin", "userInfo"]),
   },
