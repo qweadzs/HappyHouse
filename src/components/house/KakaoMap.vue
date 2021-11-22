@@ -54,6 +54,7 @@ export default {
     return {
       map: null,
       markers: [],
+      infowindows: [],
       moveLatLon: null, // 지도 위치 옮기는 변수
       geocoder: null, // 주소-좌표 변환 객체
       address: "",
@@ -86,7 +87,6 @@ export default {
         "//dapi.kakao.com/v2/maps/sdk.js?appkey=915cffed372954b7b44804ed422b9cf0&libraries=services";
       //autoload=false&
       document.head.appendChild(script);
-      this.initMap();
     }
   },
   methods: {
@@ -100,7 +100,7 @@ export default {
       // const map = new kakao.maps.Map(container, options);
       this.map = new kakao.maps.Map(container, options);
       this.moveLatLon = new kakao.maps.LatLng(36.35, 127.38); // 지도 위치 옮기는 변수
-      this.convertToLoc();
+      // this.convertToLoc();
     },
 
     // 지도 위치 옮기기 - 파라미터로 옮기는게 나을거같음
@@ -114,28 +114,40 @@ export default {
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {
           var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-          console.log(coords);
+          // 마커,윈도우 초기화
+          this.setMarkers(null);
+          this.setWindows(null, null);
           // 결과값으로 받은 위치를 마커로 표시합니다
-          const marker = new kakao.maps.Marker({
+          var marker = new kakao.maps.Marker({
             map: this.map,
             position: coords,
           });
 
           // 인포윈도우로 장소에 대한 설명을 표시합니다
           var infowindow = new kakao.maps.InfoWindow({
-            content:
-              '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
+            content: `<div style="width:150px;text-align:center;padding:6px 0;">${this.house.아파트}</div>`,
           });
           infowindow.open(this.map, marker);
-
+          this.markers.push(marker);
+          this.infowindows.push(infowindow);
           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-          // this.map.setCenter(coords);
-          console.log(this.map);
           this.map.panTo(coords);
         } else {
           console.log("실패");
         }
       });
+    },
+    // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+    setMarkers(map) {
+      for (var i = 0; i < this.markers.length; i++) {
+        this.markers[i].setMap(map);
+      }
+    },
+    // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+    setWindows(map, marker) {
+      for (var i = 0; i < this.infowindows.length; i++) {
+        this.infowindows[i].close(map, marker);
+      }
     },
   },
 };
