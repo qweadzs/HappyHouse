@@ -1,29 +1,42 @@
 <template>
-  <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        <b-alert show><h3>글보기</h3></b-alert>
-      </b-col>
-    </b-row>
-    <b-row class="mb-1">
-      <b-col class="text-left">
-        <b-button variant="outline-primary" @click="listArticle">목록</b-button>
-      </b-col>
-      <b-col class="text-right">
-        <b-button
-          variant="outline-info"
-          size="sm"
+  <v-container class="bv-example-row mt-3">
+    <v-row>
+      <v-col>
+        <v-alert show><h3>글보기</h3></v-alert>
+      </v-col>
+    </v-row>
+    <v-row class="mb-1">
+      <v-col class="text-left">
+        <v-btn
+          :disabled="loading"
+          class="ma-1"
+          color="grey"
+          outlined
+          @click="listArticle"
+          >목록</v-btn
+        >
+      </v-col>
+      <v-col class="text-right">
+        <v-btn
+          :disabled="loading"
+          class="ma-1"
+          color="grey"
+          outlined
           @click="moveModifyArticle"
-          class="mr-2"
-          >글수정</b-button
+          >글수정</v-btn
         >
-        <b-button variant="outline-danger" size="sm" @click="removeArticle"
-          >글삭제</b-button
+        <v-btn
+          :disabled="loading"
+          class="ma-1"
+          color="grey"
+          outlined
+          @click="removeArticle"
+          >글삭제</v-btn
         >
-      </b-col>
-    </b-row>
-    <b-row class="mb-1">
-      <b-col>
+      </v-col>
+    </v-row>
+    <v-row class="mb-1">
+      <v-col>
         <b-card
           :header-html="`<h3>${article.articleno}.
           ${article.subject} [${article.hit}]</h3><div><h6>${article.userid}</div><div>${article.regtime}</h6></div>`"
@@ -35,8 +48,8 @@
             <div v-html="message"></div>
           </b-card-body>
         </b-card>
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
 
     <comment-write :articleno="articleno" />
     <comment-write
@@ -50,7 +63,7 @@
       :comment="comment"
       @modify-comment="onModifyComment"
     />
-  </b-container>
+  </v-container>
 </template>
 
 <script>

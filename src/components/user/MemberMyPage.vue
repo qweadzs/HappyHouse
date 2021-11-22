@@ -85,7 +85,7 @@
             class="ma-1"
             color="error"
             plain
-            @click="remove"
+            @click="removeUser(userInfo.userid)"
           >
             회원탈퇴
           </v-btn>
@@ -97,7 +97,7 @@
 
           <v-list-item>
             <v-list-item-action>
-              <v-icon>mdi-phone</v-icon>
+              <v-icon> mdi-account</v-icon>
             </v-list-item-action>
 
             <v-list-item-content>

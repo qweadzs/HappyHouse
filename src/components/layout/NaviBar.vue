@@ -26,7 +26,7 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
 
-          <v-list-item router-link :to="{ name: 'SignUp' }">
+          <v-list-item v-if="!userInfo" router-link :to="{ name: 'SignUp' }">
             <v-list-item-icon>
               <v-icon>mdi-account-plus</v-icon>
             </v-list-item-icon>
