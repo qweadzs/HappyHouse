@@ -1,18 +1,20 @@
 <template>
   <div class="regist">
-    <div v-if="modifyComment != null" class="regist_form">
-      <v-textarea
+    <div v-if="modifyComment != null">
+      <v-text-field
+        label="댓글수정"
+        outlined
         name="comment"
         id="comment"
-        outlined
         v-model="modifyComment.comment"
-        cols="35"
-        rows="2"
-      ></v-textarea>
-      <button class="small" @click="updateCommentCancel">취소</button>
+        cols="12"
+        sm="6"
+        md="3"
+      ></v-text-field>
       <button class="small" @click="updateComment">수정</button>
+      <button class="small" @click="updateCommentCancel">취소</button>
     </div>
-    <div v-else class="regist_form">
+    <div v-else>
       <v-text-field
         label="댓글"
         outlined
@@ -24,7 +26,7 @@
         md="3"
         @keyup.enter="registComment"
       ></v-text-field>
-      <button class="small" @click="registComment">등록</button>
+      <button class="small enrollBtn" @click="registComment">등록</button>
     </div>
   </div>
 </template>
@@ -74,17 +76,17 @@ export default {
 </script>
 
 <style scoped>
-textarea {
-  width: 90%;
-  font-size: large;
-  border: 1px;
-}
 button {
-  float: right;
+  position: relative;
+  left: 44%;
+  bottom: 69px;
 }
 button.small {
   width: 60px;
   font-size: small;
   font-weight: bold;
+}
+.enrollBtn {
+  left: 47%;
 }
 </style>

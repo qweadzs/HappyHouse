@@ -1,18 +1,11 @@
 <template>
-  <!-- <v-footer app class="overflow-hidden" justify-center>
-    <div class="text-center mb-8">
-      <v-btn color="deep-purple" outlined @click="active = !active">
-        More
-      </v-btn>
-    </div> -->
-
   <v-bottom-navigation
     app
-    class="overflow-hidden"
+    class="overflow-hidden footer"
     justify-center
     v-model="value"
     :input-value="active"
-    color="indigo"
+    color="red"
   >
     <v-btn>
       <span>커피 사주기</span>
@@ -66,3 +59,9 @@ export default {
   },
 };
 </script>
+<style>
+.footer {
+  position: sticky;
+  bottom: 0;
+}
+</style>

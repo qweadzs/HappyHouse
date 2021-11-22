@@ -18,7 +18,7 @@ export default {
     userid: String,
     aptCode: String,
     aptName: String,
-    dongCode: Number,
+    // dongCode: Number,
     dongName: String,
     buildYear: Number,
     jibun: String,

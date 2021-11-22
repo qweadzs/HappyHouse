@@ -20,6 +20,11 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap");
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
 a:hover {
   text-decoration: none;
   font-weight: bold;

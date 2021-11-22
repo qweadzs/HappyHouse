@@ -1,18 +1,12 @@
 <template>
-  <v-row
-    class="m-2"
-    @click="selectHouse"
-    @mouseover="colorChange(true)"
-    @mouseout="colorChange(false)"
-    :class="{ 'mouse-over-bgcolor': isColor }"
-  >
+  <v-row class="m-2" @click="selectHouse">
     <v-col cols="2" class="text-center align-self-center">
       <v-btn @click="goregist" class="mx-2" fab dark small color="pink">
-        <v-icon dark> mdi-heart </v-icon>
+        <v-icon> mdi-heart </v-icon>
       </v-btn>
     </v-col>
     <v-col cols="10" class="align-self-center">
-      [{{ house.일련번호 }}] {{ house.아파트 }}
+      {{ house.아파트 }} [{{ house.도로명 }}]
     </v-col>
   </v-row>
 </template>
@@ -53,11 +47,7 @@ export default {
       // this.$store.dispatch("getHouse", this.house);
       this.detailHouse(this.house);
     },
-    colorChange(flag) {
-      this.isColor = flag;
-    },
     goregist() {
-      console.log(this.house);
       wishregist(
         {
           userid: this.userInfo.userid,
@@ -92,8 +82,5 @@ export default {
 <style scoped>
 .apt {
   width: 50px;
-}
-.mouse-over-bgcolor {
-  background-color: lightblue;
 }
 </style>

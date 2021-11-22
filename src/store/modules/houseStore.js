@@ -3,8 +3,8 @@ import { sidoList, gugunList, houseList } from "@/api/house.js";
 const houseStore = {
   namespaced: true,
   state: {
-    sidos: [{ value: null, text: "선택하세요" }],
-    guguns: [{ value: null, text: "선택하세요" }],
+    sidos: [{ value: null, text: "시/도" }],
+    guguns: [{ value: null, text: "구/군" }],
     houses: [],
     house: null,
   },
@@ -27,10 +27,10 @@ const houseStore = {
       });
     },
     CLEAR_SIDO_LIST: (state) => {
-      state.sidos = [{ value: null, text: "선택하세요" }];
+      state.sidos = [{ value: null, text: "시/도" }];
     },
     CLEAR_GUGUN_LIST: (state) => {
-      state.guguns = [{ value: null, text: "선택하세요" }];
+      state.guguns = [{ value: null, text: "구/군" }];
     },
     SET_HOUSE_LIST: (state, houses) => {
       //   console.log(houses);

@@ -1,9 +1,10 @@
 <template>
   <b-container
     v-if="houses && houses.length != 0"
-    class="bv-example-row mt-3 overflow-auto"
+    class="bv-example-row mt-3 cuty"
   >
     <house-list-row
+      :class="row"
       v-for="(house, index) in houses"
       :key="index"
       :house="house"
@@ -39,4 +40,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.cuty {
+  /* 전체 페이지 높이에서 80퍼센트 만큼을 차지 */
+  height: 80vh;
+  overflow-y: scroll;
+}
+.row :hover {
+  background-color: lightblue;
+  cursor: pointer;
+  transition: 0.5s;
+}
+</style>

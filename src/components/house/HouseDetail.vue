@@ -8,30 +8,7 @@
     <b-row class="mb-2 mt-1">
       <b-col><KakaoMap /> </b-col>
     </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="secondary"
-          >일련번호 : {{ house.일련번호 }}</b-alert
-        >
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="primary"
-          >아파트 이름 : {{ house.아파트 }}
-        </b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="info">법정동 : {{ house.법정동 }} </b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="warning">층수 : {{ house.층 }}층</b-alert>
-      </b-col>
-    </b-row>
+    <b-row> </b-row>
     <b-row>
       <b-col>
         <b-alert show variant="danger"

@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-@import url(https://fonts.googleapis.com.com/earlyaccess/nanumgothic.css);
+/* @import url(https://fonts.googleapis.com.com/earlyaccess/nanumgothic.css); */
 .underline-steelblue {
   display: inline-block;
   background: linear-gradient(
