@@ -6,7 +6,7 @@
       >
     </b-row>
     <b-row class="mb-2 mt-1">
-      <b-col><KakaoMap :house="house" /> </b-col>
+      <b-col><KakaoMap /> </b-col>
     </b-row>
     <b-row>
       <b-col>

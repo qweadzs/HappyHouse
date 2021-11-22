@@ -63,9 +63,12 @@ export default {
   //   house: Object,
   // },
   watch: {
-    geocoder: function () {
+    house: function () {
       return this.convertToLoc(this.house);
     },
+    // geocoder: function () {
+    //   return this.convertToLoc(this.house);
+    // },
   },
   computed: {
     ...mapState(houseStore, ["house"]),
@@ -83,6 +86,7 @@ export default {
         "//dapi.kakao.com/v2/maps/sdk.js?appkey=915cffed372954b7b44804ed422b9cf0&libraries=services";
       //autoload=false&
       document.head.appendChild(script);
+      this.initMap();
     }
   },
   methods: {
@@ -96,16 +100,15 @@ export default {
       // const map = new kakao.maps.Map(container, options);
       this.map = new kakao.maps.Map(container, options);
       this.moveLatLon = new kakao.maps.LatLng(36.35, 127.38); // 지도 위치 옮기는 변수
-      console.log("house = " + this.house);
-      this.convertToLoc(this.house);
+      this.convertToLoc();
     },
 
     // 지도 위치 옮기기 - 파라미터로 옮기는게 나을거같음
     // moveTo() {
     //   this.map.panTo(this.moveLatLon);
     // },
-    convertToLoc(house) {
-      this.address = house.법정동 + " " + house.지번;
+    convertToLoc() {
+      this.address = this.house.법정동 + " " + this.house.지번;
       this.geocoder = new kakao.maps.services.Geocoder();
       this.geocoder.addressSearch(this.address, (result, status) => {
         // 정상적으로 검색이 완료됐으면

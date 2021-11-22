@@ -46,8 +46,8 @@ export default {
       });
     },
     deleteComment() {
-      this.delComment(this.comment.comment_no);
-      this.$router.go();
+      this.delComment(this.comment);
+      // this.$router.go();
     },
     getFormatDate(regtime) {
       return moment(new Date(regtime)).format("YYYY-MM-DD HH:mm:ss");

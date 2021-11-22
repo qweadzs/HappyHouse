@@ -59,11 +59,11 @@ export default {
         articleNo: this.$route.params.articleno,
       });
       this.comment = "";
-      this.$router.go();
+      // this.$router.go();
     },
     updateComment() {
       this.updComment(this.modifyComment);
-      this.$router.go();
+      // this.$router.go();
     },
     updateCommentCancel() {
       this.$emit("modify-comment-cancel", false);
