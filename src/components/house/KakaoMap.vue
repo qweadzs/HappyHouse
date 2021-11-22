@@ -55,12 +55,13 @@ export default {
       map: null,
       ps: null, // 장소 검색 객체를 생성합니다
       markers: [],
-      infowindows: [],
+      marker: {},
       infowindow: null,
       moveLatLon: null, // 지도 위치 옮기는 변수
       geocoder: null, // 주소-좌표 변환 객체
       address: "",
       currCategory: "",
+      coo: null, // 누른곳의 좌표
     };
   },
   // props: {
@@ -106,30 +107,66 @@ export default {
     },
     // 카테고리별 검색을 합니다.
     clickToSearch(category) {
+      this.currCategory = category;
       this.ps = new kakao.maps.services.Places(this.map);
       // 카테고리로 은행을 검색합니다
 
-      this.ps.categorySearch("BK9", this.placesSearchCB, {
+      this.ps.categorySearch(category, this.placesSearchCB, {
         useMapBounds: true,
       });
-      this.displayMarker(category);
     },
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
     placesSearchCB(data, status) {
       if (status === kakao.maps.services.Status.OK) {
+        var order = document
+          .getElementById(this.currCategory)
+          .getAttribute("data-order");
+        // 출력 전 모든 마커 삭제
+        this.setMarkers(null);
+        // 클릭한 카테고리의 검색된 개수만큼
         for (var i = 0; i < data.length; i++) {
-          this.displayMarker(data[i]);
+          this.displayMarker(data[i], order);
         }
       }
     },
 
     // 지도에 마커를 표시하는 함수입니다
-    displayMarker(place) {
+    displayMarker(place, order) {
+      //place 객체는 다음의 속성을 가진다.
+      //       address_name: "대구 동구 신암동 821-24"
+      // category_group_code: "OL7"
+      // category_group_name: "주유소,충전소"
+      // category_name: "교통,수송 > 자동차 > 주유,가스 > 주유소 > S-oil주유소"
+      // distance: ""
+      // id: "18259017"
+      // phone: "053-953-5144"
+      // place_name: "신암로주유소"
+      // place_url: "http://place.map.kakao.com/18259017"
+      // road_address_name: "대구 동구 신암로 117"
+      // x: "128.61218847406008"
+      // y: "35.880997076920536"
+
+      // 각 메뉴에 맞는 아이콘 설정
+      var imageSrc =
+          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png", // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        imageSize = new kakao.maps.Size(27, 28), // 마커 이미지의 크기
+        imgOptions = {
+          spriteSize: new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
+          spriteOrigin: new kakao.maps.Point(46, order * 36), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+          offset: new kakao.maps.Point(11, 28), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+        },
+        markerImage = new kakao.maps.MarkerImage(
+          imageSrc,
+          imageSize,
+          imgOptions
+        );
       // 마커를 생성하고 지도에 표시합니다
       var marker = new kakao.maps.Marker({
         map: this.map,
         position: new kakao.maps.LatLng(place.y, place.x),
+        image: markerImage,
       });
+      this.markers.push(marker);
 
       // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, "click", function () {
@@ -156,20 +193,23 @@ export default {
           var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
           // 마커,윈도우 초기화
           this.setMarkers(null);
-          this.setWindows(null, null);
+          this.infowindow.close();
           // 결과값으로 받은 위치를 마커로 표시합니다
           var marker = new kakao.maps.Marker({
             map: this.map,
             position: coords,
           });
-
+          this.markers.push(marker);
+          this.marker = marker;
+          this.coo = coords;
           // 인포윈도우로 장소에 대한 설명을 표시합니다
           var infowindow = new kakao.maps.InfoWindow({
             content: `<div style="width:150px;text-align:center;padding:6px 0;">${this.house.아파트}</div>`,
           });
           infowindow.open(this.map, marker);
-          this.markers.push(marker);
-          this.infowindows.push(infowindow);
+          this.infowindow = infowindow;
+          // this.markers.push(marker);
+          // this.infowindows.push(infowindow);
           this.ps = new kakao.maps.services.Places(this.map);
           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
           this.map.panTo(coords);
@@ -182,6 +222,9 @@ export default {
     setMarkers(map) {
       for (var i = 0; i < this.markers.length; i++) {
         this.markers[i].setMap(map);
+      }
+      if (map === null) {
+        this.markers = [];
       }
     },
     // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
