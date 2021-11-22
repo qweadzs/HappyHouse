@@ -63,7 +63,7 @@
 
           <v-list-item v-if="userInfo" router-link :to="{ name: 'Mail' }">
             <v-list-item-icon>
-              <v-icon>mdi-home-city-outline</v-icon>
+              <v-icon>mdi-email</v-icon>
             </v-list-item-icon>
             <v-list-item-title>메일 보내기</v-list-item-title>
           </v-list-item>

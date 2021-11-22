@@ -57,6 +57,7 @@ export default {
       markers: [],
       marker: {},
       infowindow: null,
+      windows: [],
       moveLatLon: null, // 지도 위치 옮기는 변수
       geocoder: null, // 주소-좌표 변환 객체
       address: "",
@@ -123,6 +124,18 @@ export default {
           .getAttribute("data-order");
         // 출력 전 모든 마커 삭제
         this.setMarkers(null);
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+          map: this.map,
+          position: this.coo,
+        });
+        this.markers.push(marker);
+        this.marker = marker;
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+          content: `<div style="width:150px;text-align:center;padding:6px 0;">${this.house.아파트}</div>`,
+        });
+        infowindow.open(this.map, marker);
         // 클릭한 카테고리의 검색된 개수만큼
         for (var i = 0; i < data.length; i++) {
           this.displayMarker(data[i], order);
@@ -166,17 +179,27 @@ export default {
         position: new kakao.maps.LatLng(place.y, place.x),
         image: markerImage,
       });
+      console.log(this.map);
       this.markers.push(marker);
-
       // 마커에 클릭이벤트를 등록합니다
-      kakao.maps.event.addListener(marker, "click", function () {
-        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-        this.infowindow.setContent(
-          '<div style="padding:5px;font-size:12px;">' +
+      kakao.maps.event.addListener(marker, "mouseover", () => {
+        this.infowindow = new kakao.maps.InfoWindow({
+          map: this.map,
+          position: this.coo,
+          content:
+            '<div style="padding:5px;font-size:12px;">' +
             place.place_name +
-            "</div>"
-        );
+            "<br>" +
+            place.phone +
+            "</div>",
+          removable: true,
+        });
+        console.log(this.infowindow);
+        console.log(marker);
         this.infowindow.open(this.map, marker);
+      });
+      kakao.maps.event.addListener(marker, "mouseout", () => {
+        this.infowindow.close();
       });
     },
 
@@ -185,6 +208,7 @@ export default {
     //   this.map.panTo(this.moveLatLon);
     // },
     convertToLoc() {
+      console.log(this.map);
       this.address = this.house.법정동 + " " + this.house.지번;
       this.geocoder = new kakao.maps.services.Geocoder();
       this.geocoder.addressSearch(this.address, (result, status) => {
@@ -225,12 +249,6 @@ export default {
       }
       if (map === null) {
         this.markers = [];
-      }
-    },
-    // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
-    setWindows(map, marker) {
-      for (var i = 0; i < this.infowindows.length; i++) {
-        this.infowindows[i].close(map, marker);
       }
     },
   },
