@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
+  <!-- <b-container class="bv-example-row mt-3 text-center">
     <h3 class="underline-hotpink">
       <b-icon icon="journals"></b-icon> Mail Service
     </h3>
@@ -41,7 +41,46 @@
       </b-col>
       <b-col></b-col>
     </b-row>
-  </b-container>
+  </b-container> -->
+
+  <v-container class="bv-example-row mt-3 text-center">
+    <h3 class="underline-hotpink"><v-icon>mdi-email</v-icon> Mail Service</h3>
+    <v-row>
+      <v-col></v-col>
+      <v-col cols="8">
+        <v-card class="text-center mt-3" style="max-width: 40rem" align="left">
+          <v-form class="text-left" @submit="onSubmit">
+            <v-form-group label="제목:" label-for="mailname">
+              <v-text-field
+                id="mailname"
+                v-model="mail.mailname"
+                required
+                label="제목"
+                @keyup.enter="confirm"
+              ></v-text-field>
+            </v-form-group>
+            <v-form-group label="내용:" label-for="mailcontent">
+              <v-textarea
+                id="mailcontent"
+                v-model="mail.mailcontent"
+                outlined
+                required
+                label="내용"
+                @keyup.enter="confirm"
+              ></v-textarea>
+            </v-form-group>
+            <v-btn type="submit" variant="success" class="m-1"
+              >메일보내기</v-btn
+            >
+            <v-btn type="button" variant="primary" class="m-1" @click="cancel"
+              >취소</v-btn
+            >
+          </v-form>
+        </v-card>
+      </v-col>
+      <v-col></v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

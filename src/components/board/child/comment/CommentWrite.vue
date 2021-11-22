@@ -1,13 +1,14 @@
 <template>
   <div class="regist">
     <div v-if="modifyComment != null" class="regist_form">
-      <textarea
+      <v-textarea
         name="comment"
         id="comment"
+        outlined
         v-model="modifyComment.comment"
         cols="35"
         rows="2"
-      ></textarea>
+      ></v-textarea>
       <button class="small" @click="updateCommentCancel">취소</button>
       <button class="small" @click="updateComment">수정</button>
     </div>
