@@ -17,27 +17,27 @@
     ></div>
     <ul id="category">
       <li id="BK9" data-order="0">
-        <span class="category_bg bank"></span>
+        <span @click="clickToSearch('BK9')" class="category_bg bank"></span>
         은행
       </li>
       <li id="MT1" data-order="1">
-        <span class="category_bg mart"></span>
+        <span @click="clickToSearch('MT1')" class="category_bg mart"></span>
         마트
       </li>
       <li id="PM9" data-order="2">
-        <span class="category_bg pharmacy"></span>
+        <span @click="clickToSearch('PM9')" class="category_bg pharmacy"></span>
         약국
       </li>
       <li id="OL7" data-order="3">
-        <span class="category_bg oil"></span>
+        <span @click="clickToSearch('OL7')" class="category_bg oil"></span>
         주유소
       </li>
       <li id="CE7" data-order="4">
-        <span class="category_bg cafe"></span>
+        <span @click="clickToSearch('CE7')" class="category_bg cafe"></span>
         카페
       </li>
       <li id="CS2" data-order="5">
-        <span class="category_bg store"></span>
+        <span @click="clickToSearch('CS2')" class="category_bg store"></span>
         편의점
       </li>
     </ul>
@@ -53,11 +53,14 @@ export default {
   data() {
     return {
       map: null,
+      ps: null, // 장소 검색 객체를 생성합니다
       markers: [],
       infowindows: [],
+      infowindow: null,
       moveLatLon: null, // 지도 위치 옮기는 변수
       geocoder: null, // 주소-좌표 변환 객체
       address: "",
+      currCategory: "",
     };
   },
   // props: {
@@ -99,8 +102,45 @@ export default {
       };
       // const map = new kakao.maps.Map(container, options);
       this.map = new kakao.maps.Map(container, options);
-      this.moveLatLon = new kakao.maps.LatLng(36.35, 127.38); // 지도 위치 옮기는 변수
-      // this.convertToLoc();
+      this.infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    },
+    // 카테고리별 검색을 합니다.
+    clickToSearch(category) {
+      this.ps = new kakao.maps.services.Places(this.map);
+      // 카테고리로 은행을 검색합니다
+
+      this.ps.categorySearch("BK9", this.placesSearchCB, {
+        useMapBounds: true,
+      });
+      this.displayMarker(category);
+    },
+    // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+    placesSearchCB(data, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        for (var i = 0; i < data.length; i++) {
+          this.displayMarker(data[i]);
+        }
+      }
+    },
+
+    // 지도에 마커를 표시하는 함수입니다
+    displayMarker(place) {
+      // 마커를 생성하고 지도에 표시합니다
+      var marker = new kakao.maps.Marker({
+        map: this.map,
+        position: new kakao.maps.LatLng(place.y, place.x),
+      });
+
+      // 마커에 클릭이벤트를 등록합니다
+      kakao.maps.event.addListener(marker, "click", function () {
+        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        this.infowindow.setContent(
+          '<div style="padding:5px;font-size:12px;">' +
+            place.place_name +
+            "</div>"
+        );
+        this.infowindow.open(this.map, marker);
+      });
     },
 
     // 지도 위치 옮기기 - 파라미터로 옮기는게 나을거같음
@@ -130,6 +170,7 @@ export default {
           infowindow.open(this.map, marker);
           this.markers.push(marker);
           this.infowindows.push(infowindow);
+          this.ps = new kakao.maps.services.Places(this.map);
           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
           this.map.panTo(coords);
         } else {
