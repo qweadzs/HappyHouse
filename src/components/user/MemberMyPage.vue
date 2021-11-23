@@ -1,6 +1,6 @@
 <template>
-  <div id="container">
-    <v-row justify="center">
+  <div id="container" class="bv-example-row mt-3 text-center">
+    <v-row class="bv-example-row mt-3 text-center">
       <v-col cols="1" sm="8">
         <v-card>
           <v-card-title class="cyan darken-1">

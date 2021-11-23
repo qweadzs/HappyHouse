@@ -1,22 +1,24 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-orange">
-      <b-icon icon="house-fill"></b-icon> House Service
+  <v-container class="bv-example-row mt-3 text-center">
+    <h3>
+      <div class="container">
+        <div class="masthead-subheading">House Service</div>
+      </div>
     </h3>
-    <b-row>
-      <b-col>
+    <v-row>
+      <v-col>
         <house-search-bar></house-search-bar>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col cols="6">
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="6">
         <house-detail />
-      </b-col>
-      <b-col cols="6" align="right" rows="6" class="overflow-hidden">
+      </v-col>
+      <v-col cols="6" align="right" rows="6" class="overflow-hidden">
         <house-list />
-      </b-col>
-    </b-row>
-  </b-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
@@ -40,5 +42,14 @@ export default {
     rgba(255, 255, 255, 0) 70%,
     rgba(231, 149, 27, 0.3) 30%
   );
+}
+.masthead-subheading {
+  font-size: 50px;
+  font-style: italic;
+  line-height: 1.5rem;
+  margin-bottom: 25px;
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 </style>

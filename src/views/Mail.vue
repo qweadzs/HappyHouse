@@ -44,7 +44,11 @@
   </b-container> -->
 
   <v-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-hotpink"><v-icon>mdi-email</v-icon> Mail Service</h3>
+    <h3>
+      <div class="container">
+        <div class="masthead-subheading">Member Service</div>
+      </div>
+    </h3>
     <v-row>
       <v-col></v-col>
       <v-col cols="8">
@@ -151,5 +155,14 @@ export default {
     rgba(255, 255, 255, 0) 70%,
     rgba(56, 233, 40, 0.3) 30%
   );
+}
+.masthead-subheading {
+  font-size: 50px;
+  font-style: italic;
+  line-height: 1.5rem;
+  margin-bottom: 25px;
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 </style>
