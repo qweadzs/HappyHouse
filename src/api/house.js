@@ -19,4 +19,9 @@ function wishregist(wishlist, success, fail) {
   api.post(`/map`, JSON.stringify(wishlist)).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, houseList, wishregist };
+//부동산 뉴스 가져오기
+function newsList(params, success, fail) {
+  api.get(`/news`).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, houseList, wishregist, newsList };
