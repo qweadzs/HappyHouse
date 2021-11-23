@@ -1,7 +1,7 @@
 <template>
-  <div id="container" class="bv-example-row mt-3 text-center">
+  <div class="bv-example-row mt-3 text-center">
     <v-row class="bv-example-row mt-3 text-center">
-      <v-col cols="1" sm="8">
+      <v-col sm="12">
         <v-card>
           <v-card-title class="cyan darken-1">
             <span class="text-h5 white--text"
@@ -16,12 +16,19 @@
               수정하기
             </v-btn>
 
-            <v-btn
-              click="removeUser(userInfo.userid)"
+            <!-- <v-btn
               class="ma-1"
               color="error"
               plain
               @click="removeUser(userInfo.userid)"
+            >
+              회원탈퇴
+            </v-btn> -->
+            <v-btn
+              class="ma-1"
+              color="error"
+              plain
+              @click="removeUser('userInfo.userid')"
             >
               회원탈퇴
             </v-btn>
@@ -65,12 +72,14 @@
               </v-list-item-content>
             </v-list-item>
 
-            <v-list-item>
+            <v-divider inset></v-divider>
+
+            <v-list-item class="mb-2">
               <v-list-item-action>
-                <v-icon>info</v-icon>
+                <v-icon>mdi-thumb-up-outline</v-icon>
               </v-list-item-action>
 
-              <v-list-item-content>
+              <v-list-item-content class="ml-5">
                 <wish-list-row
                   v-for="(wishapt, index) in wishlist"
                   :key="index"
@@ -106,7 +115,6 @@ export default {
     };
   },
   created() {
-    console.log(this.userInfo.userid);
     listWish(
       this.userInfo.userid,
       (response) => {
@@ -123,13 +131,13 @@ export default {
   methods: {
     ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     removeUser(data) {
-      if (confirm("정말로 삭제?")) {
+      if (confirm("정말로 탈퇴하시겠습니까?")) {
         console.log(data);
         deleteUser(data, () => {
           this.SET_IS_LOGIN(false);
           this.SET_USER_INFO(null);
           sessionStorage.removeItem("access-token");
-          alert("삭제가 완료되었습니다.");
+          alert("탈퇴가 완료되었습니다.");
           if (this.$route.path != "/") this.$router.push({ name: "Home" });
         });
       }
@@ -145,8 +153,4 @@ export default {
 };
 </script>
 
-<style>
-#container {
-  color: brown;
-}
-</style>
+<style></style>

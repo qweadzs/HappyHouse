@@ -107,7 +107,6 @@ const houseStore = {
       houseList(
         params,
         (response) => {
-          console.log(param.keyword);
           var searchList = [];
           // 키워드와 부합하는 아파트만 삽입
           for (
@@ -118,7 +117,6 @@ const houseStore = {
             // 아파트 이름 찾는 로직 구현
             var aptName = response.data.response.body.items.item[index].아파트;
             var temp = aptName.indexOf(param.keyword);
-            console.log(temp);
             if (temp >= 0) {
               searchList.push(response.data.response.body.items.item[index]);
             }
