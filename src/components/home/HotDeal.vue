@@ -1,7 +1,12 @@
 <template>
   <div outlined>
     <h2>
-      <div class="masthead-subheading mt-3">Hot Deal.</div>
+      <div
+        class="masthead-subheading mt-3"
+        style="text-shadow: 2px 2px 2px gray"
+      >
+        Hot Deal.
+      </div>
     </h2>
   </div>
 </template>

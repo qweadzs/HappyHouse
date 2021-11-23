@@ -1,5 +1,5 @@
 <template>
-  <v-container class="bv-example-row mt-2 text-center">
+  <v-container class="bv-example-row mt-2">
     <v-carousel :show-arrows="false" cycle>
       <v-carousel-item
         v-for="(item, i) in items"
@@ -19,14 +19,19 @@
         <hot-deal />
       </v-col>
     </v-row>
+    <hr />
+    <v-row>
+      <Developers></Developers>
+    </v-row>
   </v-container>
 </template>
 
 <script>
 import HotDeal from "../components/home/HotDeal.vue";
 import Info from "../components/home/Info.vue";
+import Developers from "../components/home/Developers.vue";
 export default {
-  components: { Info, HotDeal },
+  components: { Info, HotDeal, Developers },
   name: "Main",
   props: {
     // msg: String,
