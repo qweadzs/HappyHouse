@@ -4,7 +4,7 @@
       <v-icon> mdi-heart </v-icon>
     </v-btn>
     <v-col cols="10" class="align-self-center">
-      {{ house.아파트 }} [{{ house.도로명 }}]
+      {{ house.아파트 }} [{{ house.도로명 }}] - {{ house.층 }}층
     </v-col>
   </v-row>
 </template>

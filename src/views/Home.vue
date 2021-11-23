@@ -9,12 +9,24 @@
       >
       </v-carousel-item>
     </v-carousel>
-    <div class="title">니가산은(=)그집</div>
+    <hr />
+    <v-row>
+      <v-col cols="6">
+        <info />
+      </v-col>
+      <v-divider vertical></v-divider>
+      <v-col cols="6">
+        <hot-deal />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import HotDeal from "../components/home/HotDeal.vue";
+import Info from "../components/home/Info.vue";
 export default {
+  components: { Info, HotDeal },
   name: "Main",
   props: {
     // msg: String,

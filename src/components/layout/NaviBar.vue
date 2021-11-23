@@ -3,13 +3,13 @@
     <v-app-bar color="deep-purple" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Happy House</v-toolbar-title>
+      <v-toolbar-title>니가 사는 그집 </v-toolbar-title>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-if="userInfo" @click="moveMypage()"
           >{{ userInfo.userid }}님 안녕하세요</v-btn
         >
-        <v-btn v-if="!userInfo" @click="moveLogin()">로그인</v-btn>
-        <v-btn v-if="!userInfo" @click="moveSignUp()">회원가입</v-btn>
+        <!-- <v-btn v-if="!userInfo" @click="moveLogin()">로그인</v-btn>
+        <v-btn v-if="!userInfo" @click="moveSignUp()">회원가입</v-btn> -->
       </v-toolbar-items>
     </v-app-bar>
 

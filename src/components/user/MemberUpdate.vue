@@ -18,6 +18,7 @@
                 v-model="user.username"
                 required
                 placeholder="이름 입력...."
+                disabled
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>

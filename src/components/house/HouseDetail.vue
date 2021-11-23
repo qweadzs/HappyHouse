@@ -3,7 +3,7 @@
     <b-row class="mb-2 mt-1">
       <b-col><KakaoMap /> </b-col>
     </b-row>
-    <b-row> </b-row>
+
     <b-row>
       <b-col>
         <b-alert show variant="danger"

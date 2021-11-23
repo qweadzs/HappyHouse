@@ -9,6 +9,7 @@
     <td>{{ dongName }}</td>
     <td>{{ buildYear }}</td>
     <td>{{ jibun }}</td>
+    <p />
   </tr>
 </template>
 

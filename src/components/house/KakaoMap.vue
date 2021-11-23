@@ -63,6 +63,14 @@ export default {
       address: "",
       currCategory: "",
       coo: null, // 누른곳의 좌표
+      allCategory: {
+        BK9: 0,
+        MT1: 0,
+        PM9: 0,
+        OL7: 0,
+        CE7: 0,
+        CS2: 0,
+      },
     };
   },
   // props: {
@@ -179,7 +187,6 @@ export default {
         position: new kakao.maps.LatLng(place.y, place.x),
         image: markerImage,
       });
-      console.log(this.map);
       this.markers.push(marker);
       // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, "mouseover", () => {
@@ -194,8 +201,6 @@ export default {
             "</div>",
           removable: true,
         });
-        console.log(this.infowindow);
-        console.log(marker);
         this.infowindow.open(this.map, marker);
       });
       kakao.maps.event.addListener(marker, "mouseout", () => {
@@ -226,6 +231,8 @@ export default {
           this.markers.push(marker);
           this.marker = marker;
           this.coo = coords;
+          // 주변 편의 시설을 전부 검색합니다.
+
           // 인포윈도우로 장소에 대한 설명을 표시합니다
           var infowindow = new kakao.maps.InfoWindow({
             content: `<div style="width:150px;text-align:center;padding:6px 0;">${this.house.아파트}</div>`,
@@ -242,6 +249,7 @@ export default {
         }
       });
     },
+
     // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
     setMarkers(map) {
       for (var i = 0; i < this.markers.length; i++) {

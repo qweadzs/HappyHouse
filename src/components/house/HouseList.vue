@@ -4,7 +4,6 @@
     class="bv-example-row mt-3 cuty"
   >
     <house-list-row
-      :class="row"
       v-for="(house, index) in houses"
       :key="index"
       :house="house"
