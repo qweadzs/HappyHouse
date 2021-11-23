@@ -61,7 +61,11 @@
             <v-list-item-title>아파트 조회</v-list-item-title>
           </v-list-item>
 
-          <v-list-item v-if="userInfo" router-link :to="{ name: 'Mail' }">
+          <v-list-item
+            v-if="userInfo && userInfo.role === 1"
+            router-link
+            :to="{ name: 'Mail' }"
+          >
             <v-list-item-icon>
               <v-icon>mdi-email</v-icon>
             </v-list-item-icon>
