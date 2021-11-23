@@ -1,10 +1,5 @@
 <template>
   <b-container v-if="house" class="bv-example-row">
-    <b-row>
-      <b-col
-        ><h3>{{ house.아파트 }}</h3></b-col
-      >
-    </b-row>
     <b-row class="mb-2 mt-1">
       <b-col><KakaoMap /> </b-col>
     </b-row>

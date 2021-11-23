@@ -16,13 +16,13 @@
     </b-col>
     <b-col cols="7">
       <b-form-input
+        @keyup.enter="search"
         v-model="keyword"
         :options="guguns"
-        @change="searchApt"
       ></b-form-input>
     </b-col>
     <div class="cute">
-      <v-btn><v-icon>mdi-magnify</v-icon></v-btn>
+      <v-btn @click="search"><v-icon>mdi-magnify</v-icon></v-btn>
     </div>
   </b-row>
 </template>
@@ -64,7 +64,12 @@ export default {
     this.getSido();
   },
   methods: {
-    ...mapActions(houseStore, ["getSido", "getGugun", "getHouseList"]),
+    ...mapActions(houseStore, [
+      "getSido",
+      "getGugun",
+      "getHouseList",
+      "getHouseListSearch",
+    ]),
     ...mapMutations(houseStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST"]),
     // sidoList() {
     //   this.getSido();
@@ -77,6 +82,16 @@ export default {
     },
     searchApt() {
       if (this.gugunCode) this.getHouseList(this.gugunCode);
+    },
+    search() {
+      if (!this.gugunCode) {
+        alert("구/군을 입력하세요.");
+      } else {
+        this.getHouseListSearch({
+          gugunCode: this.gugunCode,
+          keyword: this.keyword,
+        });
+      }
     },
   },
 };

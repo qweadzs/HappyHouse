@@ -84,8 +84,46 @@ const houseStore = {
       houseList(
         params,
         (response) => {
-          // console.log(response.data.response.body.items.item);
           commit("SET_HOUSE_LIST", response.data.response.body.items.item);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    getHouseListSearch: ({ commit }, param) => {
+      // vue cli enviroment variables 검색
+      //.env.local file 생성.
+      // 반드시 VUE_APP으로 시작해야 한다.
+      const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
+      //   const SERVICE_KEY =
+      //     "9Xo0vlglWcOBGUDxH8PPbuKnlBwbWU6aO7%2Bk3FV4baF9GXok1yxIEF%2BIwr2%2B%2F%2F4oVLT8bekKU%2Bk9ztkJO0wsBw%3D%3D";
+      const params = {
+        LAWD_CD: param.gugunCode,
+        DEAL_YMD: "202110",
+        serviceKey: decodeURIComponent(SERVICE_KEY),
+        numOfRows: 200,
+      };
+      houseList(
+        params,
+        (response) => {
+          console.log(param.keyword);
+          var searchList = [];
+          // 키워드와 부합하는 아파트만 삽입
+          for (
+            let index = 0;
+            index < response.data.response.body.items.item.length;
+            index++
+          ) {
+            // 아파트 이름 찾는 로직 구현
+            var aptName = response.data.response.body.items.item[index].아파트;
+            var temp = aptName.indexOf(param.keyword);
+            console.log(temp);
+            if (temp >= 0) {
+              searchList.push(response.data.response.body.items.item[index]);
+            }
+          }
+          commit("SET_HOUSE_LIST", searchList);
         },
         (error) => {
           console.log(error);
