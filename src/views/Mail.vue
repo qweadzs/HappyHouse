@@ -46,7 +46,7 @@
   <v-container class="bv-example-row mt-3 text-center">
     <h3>
       <div class="container">
-        <div class="masthead-subheading">Member Service</div>
+        <div class="masthead-subheading">Mail Service</div>
       </div>
     </h3>
     <v-row>

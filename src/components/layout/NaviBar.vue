@@ -5,7 +5,7 @@
 
       <v-toolbar-title>니가 사는 그집 </v-toolbar-title>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn color="deep-purple" v-if="userInfo" @click="moveMypage()"
+        <v-btn right color="deep-purple" v-if="userInfo" @click="moveMypage()"
           >{{ userInfo.userid }}님 안녕하세요</v-btn
         >
         <!-- <v-btn v-if="!userInfo" @click="moveLogin()">로그인</v-btn>

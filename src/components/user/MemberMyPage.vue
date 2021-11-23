@@ -9,7 +9,7 @@
             >
             <v-btn
               class="ma-1"
-              color="grey"
+              color="primary"
               plain
               @click="moveUpdate(userInfo.userid)"
             >
@@ -26,7 +26,7 @@
             </v-btn> -->
             <v-btn
               class="ma-1"
-              color="error"
+              color="red"
               plain
               @click="removeUser('userInfo.userid')"
             >
