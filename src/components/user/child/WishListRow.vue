@@ -1,15 +1,14 @@
 <template>
-  <tr>
+  <tr @click="searchURL">
     <th>
-      <router-link
-        :to="{ name: 'WishView', params: { aptCode: this.aptCode } }"
-        >{{ aptName }}</router-link
-      >
+      {{ aptName }}
     </th>
-    <td>{{ dongName }}</td>
+    <br />
+    <td>주소 : {{ dongName }}</td>
     <td>{{ buildYear }}</td>
     <td>{{ jibun }}</td>
     <p />
+    <v-divider inset></v-divider>
   </tr>
 </template>
 
@@ -32,7 +31,17 @@ export default {
     //   return moment(new Date(this.regtime)).format("YY.MM.DD hh:mm:ss");
     // },
   },
+  methods: {
+    searchURL() {
+      window.open(
+        "https://map.kakao.com/link/search/" +
+          this.dongName +
+          " " +
+          this.aptName
+      );
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped></style>

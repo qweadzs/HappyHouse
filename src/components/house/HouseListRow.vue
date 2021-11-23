@@ -1,5 +1,5 @@
 <template>
-  <v-row class="m-2" @click="selectHouse">
+  <v-row class="m-2 row" @click="selectHouse">
     <v-btn @click="goregist" fab dark small color="pink" class="wish-btn">
       <v-icon> mdi-heart </v-icon>
     </v-btn>
@@ -80,5 +80,10 @@ export default {
 <style scoped>
 .apt {
   width: 50px;
+}
+.row :hover {
+  background-color: lightblue;
+  cursor: pointer;
+  transition: 0.5s;
 }
 </style>
