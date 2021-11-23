@@ -1,17 +1,5 @@
 <template>
-  <v-bottom-navigation
-    app
-    class="overflow-hidden footer"
-    justify-center
-    v-model="value"
-    :input-value="active"
-    color="red"
-  >
-    <v-btn>
-      <span>커피 사주기</span>
-      <v-icon>mdi-coffee</v-icon>
-    </v-btn>
-
+  <v-bottom-navigation app v-model="value">
     <v-btn>
       <span>구독하기</span>
       <v-icon @click="doSubscribe()">mdi-heart</v-icon>
