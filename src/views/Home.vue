@@ -1,6 +1,6 @@
 <template>
   <v-container class="bv-example-row mt-2 text-center">
-    <v-carousel :show-arrows="false">
+    <v-carousel :show-arrows="false" cycle>
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
