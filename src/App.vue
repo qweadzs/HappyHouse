@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
-    <navi-bar />
-    <router-view />
-    <footer-bar />
-  </div>
+  <v-app>
+    <div id="app">
+      <navi-bar />
+      <router-view />
+      <footer-bar />
+    </div>
+  </v-app>
 </template>
 
 <script>

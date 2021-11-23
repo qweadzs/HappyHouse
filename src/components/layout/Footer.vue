@@ -1,13 +1,12 @@
 <template>
-  <v-app>
+  <div class="mb-15">
     <v-bottom-navigation mandatory app v-model="value">
       <v-btn>
         <span>구독하기</span>
         <v-icon @click="doSubscribe()">mdi-heart</v-icon>
       </v-btn>
     </v-bottom-navigation>
-    <!-- </v-footer> -->
-  </v-app>
+  </div>
 </template>
 
 <script>
