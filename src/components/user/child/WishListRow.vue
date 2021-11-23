@@ -1,9 +1,10 @@
 <template>
   <tr>
     <th>
-      <router-link :to="{ name: 'WishView', params: { lat: this.lat } }">{{
-        aptName
-      }}</router-link>
+      <router-link
+        :to="{ name: 'WishView', params: { aptCode: this.aptCode } }"
+        >{{ aptName }}</router-link
+      >
     </th>
     <td>{{ dongName }}</td>
     <td>{{ buildYear }}</td>
