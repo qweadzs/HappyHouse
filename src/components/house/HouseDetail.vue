@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="house" class="bv-example-row">
+  <b-container v-if="house" class="bv-example-row">
     <v-row class="mb-2 mt-1">
       <v-col
         ><v-card loading="true">
@@ -22,7 +22,7 @@
         <v-card outlined> asdf </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </b-container>
 </template>
 
 <script>

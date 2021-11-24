@@ -22,14 +22,17 @@ export default {
     return {
       isColor: false,
       userid: "",
-      aptCode: Number,
+      aptCode: "Number",
       aptName: "",
       dongCode: "",
       dongName: "",
       buildYear: Number,
       jibun: "",
-      lat: "",
-      lng: "",
+      dealAmount: "",
+      dealYear: "",
+      dealMonth: "",
+      dealDay: "",
+      area: "",
     };
   },
   computed: {
@@ -56,19 +59,25 @@ export default {
           buildYear: this.house.건축년도,
           jibun: this.house.지번,
           dealAmount: this.house.거래금액,
+          dealYear: this.house.년,
+          dealMonth: this.house.월,
+          dealDay: this.house.일,
+          area: this.house.전용면적,
+
           //일단 aptcode로 받아야하고
           // aptcode 없는건 우짤까
         },
         ({ data }) => {
-          let msg = "등록 처리시 문제가 발생했습니다.";
+          console.log(this.house);
+          let msg = "";
           if (data === "success") {
             msg = "등록이 완료되었습니다.";
           }
           alert(msg);
-          this.moveList();
         },
         (error) => {
-          alert("아이디가 중복됩니다. 다른 아이디를 사용해주세요.");
+          let msg = "이미 등록된 위시리스트 입니다.";
+          alert(msg);
           console.log(error);
         }
       );
