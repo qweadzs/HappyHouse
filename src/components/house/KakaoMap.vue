@@ -16,28 +16,28 @@
       style="width: 100%; height: 100%; position: relative; overflow: hidden"
     ></div>
     <ul id="category">
-      <li id="BK9" data-order="0">
-        <span @click="clickToSearch('BK9')" class="category_bg bank"></span>
+      <li id="BK9" data-order="0" @click="clickToSearch('BK9')">
+        <span class="category_bg bank"></span>
         은행
       </li>
-      <li id="MT1" data-order="1">
-        <span @click="clickToSearch('MT1')" class="category_bg mart"></span>
+      <li id="MT1" data-order="1" @click="clickToSearch('MT1')">
+        <span class="category_bg mart"></span>
         마트
       </li>
-      <li id="PM9" data-order="2">
-        <span @click="clickToSearch('PM9')" class="category_bg pharmacy"></span>
+      <li id="PM9" data-order="2" @click="clickToSearch('PM9')">
+        <span class="category_bg pharmacy"></span>
         약국
       </li>
-      <li id="OL7" data-order="3">
-        <span @click="clickToSearch('OL7')" class="category_bg oil"></span>
+      <li id="OL7" data-order="3" @click="clickToSearch('OL7')">
+        <span class="category_bg oil"></span>
         주유소
       </li>
-      <li id="CE7" data-order="4">
-        <span @click="clickToSearch('CE7')" class="category_bg cafe"></span>
+      <li id="CE7" data-order="4" @click="clickToSearch('CE7')">
+        <span class="category_bg cafe"></span>
         카페
       </li>
-      <li id="CS2" data-order="5">
-        <span @click="clickToSearch('CS2')" class="category_bg store"></span>
+      <li id="CS2" data-order="5" @click="clickToSearch('CS2')">
+        <span class="category_bg store"></span>
         편의점
       </li>
     </ul>
