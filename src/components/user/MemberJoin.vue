@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <!-- <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
         <b-alert variant="secondary" show><h3>회원가입</h3></b-alert>
@@ -67,7 +67,68 @@
       </b-col>
       <b-col></b-col>
     </b-row>
-  </b-container>
+  </b-container> -->
+  <v-form
+    @submit="onSubmit"
+    ref="form"
+    class="text-center mt-3"
+    style="max-width: 60rem"
+    v-model="valid"
+    lazy-validation
+  >
+    <v-row>
+      <v-col>
+        <v-alert variant="secondary" show><h3>회원가입</h3></v-alert>
+      </v-col>
+    </v-row>
+    <v-form-group label-for="userid">
+      <v-text-field
+        id="userid"
+        v-model="user.userid"
+        required
+        placeholder="아이디"
+        @keyup.enter="confirm"
+      ></v-text-field>
+    </v-form-group>
+    <v-text-field
+      id="username"
+      v-model="user.username"
+      required
+      placeholder="이름"
+      @keyup.enter="confirm"
+    ></v-text-field>
+
+    <v-text-field
+      type="password"
+      id="userpwd"
+      v-model="user.userpwd"
+      required
+      placeholder="비밀번호"
+      @keyup.enter="confirm"
+    ></v-text-field>
+    <v-text-field
+      type="email"
+      id="email"
+      v-model="user.email"
+      required
+      placeholder="E-Mail"
+      @keyup.enter="confirm"
+    ></v-text-field>
+
+    <v-btn
+      color="success"
+      type="submit"
+      variant="success"
+      class="m-1"
+      @click="movePage"
+    >
+      회원가입
+    </v-btn>
+
+    <v-btn color="error" variant="primary" class="m-1" @click="moveList">
+      취소
+    </v-btn>
+  </v-form>
 </template>
 
 <script>
@@ -95,24 +156,16 @@ export default {
       let err = true;
       let msg = "";
       !this.user.userid &&
-        ((msg = "아이디 입력해주세요"),
-        (err = false),
-        this.$refs.userid.focus()),
+        ((msg = "아이디 입력해주세요"), (err = false), this.userid == null),
         err &&
           !this.user.username &&
-          ((msg = "이름을 입력해주세요"),
-          (err = false),
-          this.$refs.username.focus());
+          ((msg = "이름을 입력해주세요"), (err = false), this.username == null);
       err &&
         !this.user.userpwd &&
-        ((msg = "비밀번호 입력해주세요"),
-        (err = false),
-        this.$refs.userpwd.focus()),
+        ((msg = "비밀번호 입력해주세요"), (err = false), (this.userpwd = null)),
         err &&
           !this.user.email &&
-          ((msg = "email 입력해주세요"),
-          (err = false),
-          this.$refs.email.focus());
+          ((msg = "email 입력해주세요"), (err = false), this.email == null);
 
       if (!err) alert(msg);
       else this.registUser();

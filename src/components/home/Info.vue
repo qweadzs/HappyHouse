@@ -8,9 +8,7 @@
         Info.
       </div>
     </h2>
-    <v-card>
-      <div class="info-message">최신 아파트 매물을 한 눈에 확인해보세요.</div>
-    </v-card>
+    <div class="info-message">최신 아파트 매물을 한 눈에 확인해보세요.</div>
   </div>
 </template>
 

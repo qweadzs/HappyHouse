@@ -1,20 +1,20 @@
 <template>
-  <b-container v-if="house" class="bv-example-row">
-    <b-row class="mb-2 mt-1">
-      <b-col><KakaoMap /> </b-col>
-    </b-row>
+  <v-container v-if="house" class="bv-example-row">
+    <v-row class="mb-2 mt-1">
+      <v-col><KakaoMap /> </v-col>
+    </v-row>
 
-    <b-row>
-      <b-col>
-        <b-alert show variant="danger"
+    <v-row>
+      <v-col>
+        <v-alert show variant="danger"
           >거래금액 :
           {{
             (parseInt(house.거래금액.replace(",", "")) * 10000) | price
-          }}원</b-alert
+          }}원</v-alert
         >
-      </b-col>
-    </b-row>
-  </b-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
