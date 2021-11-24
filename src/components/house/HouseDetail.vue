@@ -11,13 +11,9 @@
       </v-col>
     </v-row>
 
-<<<<<<< HEAD
-    <b-row>
-      <b-col>
-=======
     <v-row>
       <v-col>
->>>>>>> 13dd384be1664663e3a2c66254272495f905cb1b
+
         <!-- <b-alert show variant="danger"
           >거래금액 :
           {{
