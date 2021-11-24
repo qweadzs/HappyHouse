@@ -10,7 +10,6 @@
         </v-card>
       </v-col>
     </v-row>
-
     <v-row>
       <v-col>
         <!-- <b-alert show variant="danger"
@@ -22,6 +21,7 @@
         <v-card outlined> asdf </v-card>
       </v-col>
     </v-row>
+    <Road />
   </b-container>
 </template>
 
@@ -29,6 +29,7 @@
 import { mapState } from "vuex";
 import KakaoMap from "@/components/house/KakaoMap.vue";
 import Chart from "@/components/house/Chart.vue";
+import Road from "@/components/house/Road.vue";
 
 const houseStore = "houseStore";
 
@@ -37,6 +38,7 @@ export default {
   components: {
     KakaoMap,
     Chart,
+    Road,
   },
   data() {
     return {
