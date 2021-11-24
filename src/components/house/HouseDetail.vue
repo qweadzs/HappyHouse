@@ -1,12 +1,18 @@
 <template>
-
   <v-container v-if="house" class="bv-example-row">
     <v-row class="mb-2 mt-1">
-      <v-col><KakaoMap /> </v-col>
+      <v-col
+        ><v-card loading="true">
+          <KakaoMap />
+        </v-card>
+        <v-card class="chart">
+          <Chart />
+        </v-card>
+      </v-col>
     </v-row>
 
-    <b-row>
-      <b-col>
+    <v-row>
+      <v-col>
         <!-- <b-alert show variant="danger"
           >거래금액 :
           {{
@@ -14,9 +20,9 @@
           }}원</b-alert
         > -->
         <v-card outlined> asdf </v-card>
-      </b-col>
-    </b-row>
-  </b-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
