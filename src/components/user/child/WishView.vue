@@ -7,13 +7,7 @@
     </h3>
 
     <v-card class="mx-auto" max-width="800">
-      <!-- 여기 카카오맵 가능? -->
-      <v-img
-        class="white--text align-end"
-        height="400px"
-        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-      >
-      </v-img>
+      <div id="roadview" style="width: 100%; height: 300px"></div>
 
       <v-card-subtitle class="pb-0">
         {{ this.aptName }}
@@ -48,10 +42,35 @@ export default {
       dealMonth: this.$route.params.dealMonth,
       dealDay: this.$route.params.dealDay,
       area: this.$route.params.area,
+      windows: [],
     };
   },
-  created() {
-    console.log(this.$route.params.no);
+  mounted() {
+    if (window.kakao && window.kakao.maps) {
+      this.initMap();
+    } else {
+      const script = document.createElement("script");
+      /* global kakao */
+      script.onload = () => kakao.maps.load(this.initMap);
+      script.src =
+        "//dapi.kakao.com/v2/maps/sdk.js?appkey=915cffed372954b7b44804ed422b9cf0&libraries=services";
+      //autoload=false&
+      document.head.appendChild(script);
+    }
+  },
+  methods: {
+    initMap() {
+      var roadviewContainer = document.getElementById("roadview"); //로드뷰를 표시할 div
+      var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
+      var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+      var position = new kakao.maps.LatLng(33.450701, 126.570667);
+
+      // 특정 위치의 좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+      roadviewClient.getNearestPanoId(position, 50, function (panoId) {
+        roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
+      });
+    },
   },
 };
 </script>

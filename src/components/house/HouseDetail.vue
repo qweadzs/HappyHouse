@@ -13,7 +13,6 @@
 
     <v-row>
       <v-col>
-
         <!-- <b-alert show variant="danger"
           >거래금액 :
           {{
@@ -23,7 +22,7 @@
         <v-card outlined> asdf </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </b-container>
 </template>
 
 <script>
