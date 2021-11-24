@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <!-- <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
         <b-alert variant="secondary" show><h3>로그인</h3></b-alert>
@@ -51,7 +51,51 @@
       </b-col>
       <b-col></b-col>
     </b-row>
-  </b-container>
+  </b-container> -->
+  <!-- class="text-center mt-3" style="max-width: 40rem" align="left" -->
+  <v-form
+    ref="form"
+    class="text-center mt-3"
+    style="max-width: 60rem"
+    v-model="valid"
+    lazy-validation
+  >
+    <v-row>
+      <v-col>
+        <v-alert variant="secondary" show><h3>로그인</h3></v-alert>
+      </v-col>
+    </v-row>
+
+    <v-text-field
+      id="userid"
+      v-model="user.userid"
+      required
+      placeholder="아이디 "
+      @keyup.enter="confirm"
+    ></v-text-field>
+
+    <v-text-field
+      type="password"
+      id="userpwd"
+      v-model="user.userpwd"
+      required
+      placeholder="비밀번호"
+      @keyup.enter="confirm"
+    ></v-text-field>
+
+    <v-btn color="success" variant="primary" class="m-1" @click="confirm">
+      로그인
+    </v-btn>
+
+    <v-btn
+      color="indigo accent-4"
+      variant="primary"
+      class="btn"
+      @click="movePage"
+    >
+      회원가입
+    </v-btn>
+  </v-form>
 </template>
 
 <script>
@@ -80,6 +124,8 @@ export default {
       if (this.isLogin) {
         await this.getUserInfo(token);
         this.$router.push({ name: "Home" });
+      } else {
+        alert("아이디,비밀번호 확인해주세요");
       }
     },
     movePage() {
@@ -89,4 +135,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.btn {
+  color: white;
+}
+</style>

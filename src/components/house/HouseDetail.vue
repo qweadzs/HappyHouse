@@ -1,15 +1,9 @@
 <template>
-  <b-container v-if="house" class="bv-example-row">
-    <b-row class="mb-2 mt-1">
-      <b-col>
-        <v-card loading="true">
-          <KakaoMap />
-        </v-card>
-        <v-card class="chart">
-          <Chart />
-        </v-card>
-      </b-col>
-    </b-row>
+
+  <v-container v-if="house" class="bv-example-row">
+    <v-row class="mb-2 mt-1">
+      <v-col><KakaoMap /> </v-col>
+    </v-row>
 
     <b-row>
       <b-col>
