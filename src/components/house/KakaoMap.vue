@@ -64,12 +64,12 @@ export default {
       currCategory: "",
       coo: null, // 누른곳의 좌표
       allCategory: {
-        BK9: 0,
-        MT1: 0,
-        PM9: 0,
-        OL7: 0,
-        CE7: 0,
-        CS2: 0,
+        BK9: 0, // 은행
+        CE7: 0, // 카페
+        CS2: 0, // 편의점
+        MT1: 0, // 마트
+        OL7: 0, // 주유소
+        PM9: 0, // 약국
       },
     };
   },
@@ -108,7 +108,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 5,
+        level: 4,
       };
       // const map = new kakao.maps.Map(container, options);
       this.map = new kakao.maps.Map(container, options);
@@ -121,8 +121,32 @@ export default {
       // 카테고리로 은행을 검색합니다
 
       this.ps.categorySearch(category, this.placesSearchCB, {
-        useMapBounds: true,
+        location: this.coo,
+        radius: 550,
       });
+    },
+    searchAll() {
+      this.ps = new kakao.maps.services.Places(this.map);
+      for (var key in this.allCategory) {
+        // 카테고리를 전부 뒤져
+        this.ps.categorySearch(key, this.placesSearch, {
+          location: this.coo,
+          radius: 550,
+        });
+      }
+      console.log(this.allCategory);
+    },
+    placesSearch(data, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        var category = data[0].category_group_code;
+        // 데이터의 개수가 카테고리당 지점의 개수임
+        for (var key in this.allCategory) {
+          if (key === category) {
+            this.allCategory[key] = data.length;
+            break;
+          }
+        }
+      }
     },
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
     placesSearchCB(data, status) {
@@ -148,6 +172,7 @@ export default {
         for (var i = 0; i < data.length; i++) {
           this.displayMarker(data[i], order);
         }
+        console.log(data.length);
       }
     },
 
@@ -214,7 +239,6 @@ export default {
     //   this.map.panTo(this.moveLatLon);
     // },
     convertToLoc() {
-      console.log(this.map);
       this.address = this.house.법정동 + " " + this.house.지번;
       this.geocoder = new kakao.maps.services.Geocoder();
       this.geocoder.addressSearch(this.address, (result, status) => {
@@ -224,7 +248,6 @@ export default {
           // 마커,윈도우 초기화
           this.setMarkers(null);
           this.infowindow.close();
-          console.log("이동전 : " + this.infowindow.cc);
           // 결과값으로 받은 위치를 마커로 표시합니다
           var marker = new kakao.maps.Marker({
             map: this.map,
@@ -245,7 +268,18 @@ export default {
           this.ps = new kakao.maps.services.Places(this.map);
           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
           this.map.panTo(coords);
-          console.log(this.infowindow.cc);
+          this.searchAll();
+          this.$emit("chart-data", {
+            BK9: this.allCategory.BK9, // 은행
+            CE7: this.allCategory.CE7, // 카페
+            CS2: this.allCategory.CS2, // 편의점
+            MT1: this.allCategory.MT1, // 마트
+            OL7: this.allCategory.OL7, // 주유소
+            PM9: this.allCategory.PM9, // 약국
+          });
+          // for (var key in this.allCategory) {
+          //   console.log(key);
+          // }
         } else {
           console.log("실패");
         }
