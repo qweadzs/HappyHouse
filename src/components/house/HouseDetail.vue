@@ -6,12 +6,13 @@
 
     <b-row>
       <b-col>
-        <b-alert show variant="danger"
+        <!-- <b-alert show variant="danger"
           >거래금액 :
           {{
             (parseInt(house.거래금액.replace(",", "")) * 10000) | price
           }}원</b-alert
-        >
+        > -->
+        <v-card> asdf </v-card>
       </b-col>
     </b-row>
   </b-container>
