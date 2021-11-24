@@ -8,6 +8,7 @@ import MemberLogin from "@/components/user/MemberLogin.vue";
 import MemberJoin from "@/components/user/MemberJoin.vue";
 import MemberMyPage from "@/components/user/MemberMyPage.vue";
 import MemberUpdate from "@/components/user/MemberUpdate.vue";
+import WishView from "@/components/user/child/WishView.vue";
 
 import Board from "@/views/Board.vue";
 import BoardList from "@/components/board/BoardList.vue";
@@ -49,6 +50,11 @@ const routes = [
     path: "/mail",
     name: "Mail",
     component: Mail,
+  },
+  {
+    path: "/wishview",
+    name: "WishView",
+    component: WishView,
   },
   {
     path: "/user",

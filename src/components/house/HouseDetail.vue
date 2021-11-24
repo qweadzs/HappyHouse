@@ -1,9 +1,8 @@
 <template>
-  <v-container v-if="house" class="bv-example-row">
+  <b-container v-if="house" class="bv-example-row">
     <v-row class="mb-2 mt-1">
       <v-col><KakaoMap /> </v-col>
     </v-row>
-
 
     <b-row>
       <b-col>
