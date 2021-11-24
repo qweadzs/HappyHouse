@@ -6,8 +6,12 @@ export default {
   extends: Pie,
   name: "Chart",
   data() {},
+  props: {
+    datas: Object,
+  },
   watch: {
-    house: function () {
+    datas: function () {
+      console.log(this.datas);
       this.gradient = this.$refs.canvas
         .getContext("2d")
         .createLinearGradient(0, 0, 0, 450);
@@ -22,18 +26,31 @@ export default {
       this.gradient2.addColorStop(0, "rgba(0, 231, 255, 0.9)");
       this.gradient2.addColorStop(0.5, "rgba(0, 231, 255, 0.25)");
       this.gradient2.addColorStop(1, "rgba(0, 231, 255, 0)");
+      var array = [];
+      for (var key in this.datas) {
+        array.push(this.datas[key]);
+      }
       this.renderChart(
         {
-          labels: ["Books", "Magazines", "Newspapers"],
+          labels: ["은행", "마트", "약국", "주유소", "카페", "편의점"],
           datasets: [
             {
-              backgroundColor: [this.gradient, this.gradient2, "#00D8FF"],
-              data: [40, 20, 10],
+              backgroundColor: [
+                this.gradient,
+                this.gradient2,
+                "#00D8FF",
+                "#FFD700",
+                "#FF1493",
+                "#FFF8DC",
+              ],
+              // 여기에 데이터 삽입
+              data: array,
             },
           ],
         },
         { responsive: true, maintainAspectRatio: false }
       );
+      console.log("차트 실행");
     },
   },
   computed: {

@@ -3,10 +3,10 @@
     <v-row class="mb-2 mt-1">
       <v-col
         ><v-card loading="true">
-          <KakaoMap />
+          <KakaoMap @chart-data="chartDataSend" />
         </v-card>
         <v-card class="chart">
-          <Chart />
+          <Chart :datas="datas" />
         </v-card>
       </v-col>
     </v-row>
@@ -40,11 +40,7 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        Books: 24,
-        Magazine: 30,
-        Newspapers: 10,
-      },
+      datas: {},
     };
   },
   computed: {
@@ -58,6 +54,11 @@ export default {
     price(value) {
       if (!value) return value;
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+  },
+  methods: {
+    chartDataSend(datas) {
+      this.datas = datas;
     },
   },
 };
