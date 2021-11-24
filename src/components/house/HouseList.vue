@@ -1,13 +1,12 @@
 <template>
-  <v-container
-    v-if="houses && houses.length != 0"
-    class="bv-example-row mt-3 cuty"
-  >
-    <house-list-row
-      v-for="(house, index) in houses"
-      :key="index"
-      :house="house"
-    />
+  <v-container v-if="houses && houses.length != 0" class="bv-example mt-3 cuty">
+    <v-card outlined>
+      <house-list-row
+        v-for="(house, index) in houses"
+        :key="index"
+        :house="house"
+      />
+    </v-card>
   </v-container>
   <v-container v-else class="bv-example-row mt-3">
     <v-row>
@@ -45,7 +44,7 @@ export default {
   height: 80vh;
   overflow-y: scroll;
 }
-.row :hover {
+.onMouse :hover {
   background-color: lightblue;
   cursor: pointer;
   transition: 0.5s;
