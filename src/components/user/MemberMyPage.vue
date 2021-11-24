@@ -133,7 +133,6 @@ export default {
     ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     removeUser(data) {
       if (confirm("정말로 탈퇴하시겠습니까?")) {
-        console.log(data);
         deleteUser(data, () => {
           this.SET_IS_LOGIN(false);
           this.SET_USER_INFO(null);
@@ -149,6 +148,19 @@ export default {
           name: "Update",
           params: { userid: data },
         });
+    },
+  },
+  actions: {
+    getList() {
+      listWish(
+        this.userInfo.userid,
+        (response) => {
+          this.wishlist = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
   },
 };

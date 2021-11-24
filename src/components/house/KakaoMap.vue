@@ -280,7 +280,7 @@ export default {
           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
           this.map.panTo(coords);
           this.searchAll();
-          setTimeout(this.forfor, 150);
+          setTimeout(this.forfor, 350);
           // this.forfor();
 
           // this.$emit("chart-data", {

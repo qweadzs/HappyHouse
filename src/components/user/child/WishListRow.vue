@@ -21,6 +21,9 @@
         }"
         >{{ aptName }}</router-link
       >
+      <v-list-item-icon class=".float-right" @click="deleteRow">
+        <v-icon>mdi-delete</v-icon>
+      </v-list-item-icon>
     </th>
     <br />
     <td>주소 : {{ dongName }}</td>
@@ -32,6 +35,7 @@
 </template>
 
 <script>
+import { deleteWish } from "@/api/member.js";
 export default {
   name: "WishListRow",
   data() {
@@ -53,17 +57,25 @@ export default {
     dealMonth: String,
     dealDay: String,
     area: String,
+    wishapt: Object,
   },
   computed: {},
   methods: {
-    // searchURL() {
-    //   window.open(
-    //     "https://map.kakao.com/link/search/" +
-    //       this.dongName +
-    //       " " +
-    //       this.aptName
-    //   );
-    // },
+    deleteRow() {
+      console.log(this.no);
+      // this.$router.push({ name: "MemberMyPage" });
+      deleteWish(
+        this.no,
+        (response) => {
+          console.log(response);
+          alert("삭제 되었습니다.");
+          this.$router.go();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
   },
 };
 </script>

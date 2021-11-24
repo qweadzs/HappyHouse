@@ -37,6 +37,9 @@ function registSub(userid, success, fail) {
 function listWish(userid, success, fail) {
   api.get(`/user/wishlist/${userid}`).then(success).catch(fail);
 }
+function deleteWish(no, success, fail) {
+  api.delete(`/user/wishlist/${no}`).then(success).catch(fail);
+}
 
 export {
   login,
@@ -47,4 +50,5 @@ export {
   modifyUser,
   registSub,
   listWish,
+  deleteWish,
 };
