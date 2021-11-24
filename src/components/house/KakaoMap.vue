@@ -139,11 +139,11 @@ export default {
         });
         this.markers.push(marker);
         this.marker = marker;
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-          content: `<div style="width:150px;text-align:center;padding:6px 0;">${this.house.아파트}</div>`,
-        });
-        infowindow.open(this.map, marker);
+        // // 인포윈도우로 장소에 대한 설명을 표시합니다
+        // var infowindow = new kakao.maps.InfoWindow({
+        //   content: `<div style="width:150px;text-align:center;padding:6px 0;">${this.house.아파트}</div>`,
+        // });
+        // infowindow.open(this.map, marker);
         // 클릭한 카테고리의 검색된 개수만큼
         for (var i = 0; i < data.length; i++) {
           this.displayMarker(data[i], order);
@@ -188,9 +188,10 @@ export default {
         image: markerImage,
       });
       this.markers.push(marker);
+      var infowindow;
       // 마커에 클릭이벤트를 등록합니다
       kakao.maps.event.addListener(marker, "mouseover", () => {
-        this.infowindow = new kakao.maps.InfoWindow({
+        infowindow = new kakao.maps.InfoWindow({
           map: this.map,
           position: this.coo,
           content:
@@ -201,10 +202,10 @@ export default {
             "</div>",
           removable: true,
         });
-        this.infowindow.open(this.map, marker);
+        infowindow.open(this.map, marker);
       });
       kakao.maps.event.addListener(marker, "mouseout", () => {
-        this.infowindow.close();
+        infowindow.close();
       });
     },
 
@@ -223,6 +224,7 @@ export default {
           // 마커,윈도우 초기화
           this.setMarkers(null);
           this.infowindow.close();
+          console.log("이동전 : " + this.infowindow.cc);
           // 결과값으로 받은 위치를 마커로 표시합니다
           var marker = new kakao.maps.Marker({
             map: this.map,
@@ -234,16 +236,16 @@ export default {
           // 주변 편의 시설을 전부 검색합니다.
 
           // 인포윈도우로 장소에 대한 설명을 표시합니다
-          var infowindow = new kakao.maps.InfoWindow({
+          this.infowindow = new kakao.maps.InfoWindow({
             content: `<div style="width:150px;text-align:center;padding:6px 0;">${this.house.아파트}</div>`,
           });
-          infowindow.open(this.map, marker);
-          this.infowindow = infowindow;
+          this.infowindow.open(this.map, marker);
           // this.markers.push(marker);
           // this.infowindows.push(infowindow);
           this.ps = new kakao.maps.services.Places(this.map);
           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
           this.map.panTo(coords);
+          console.log(this.infowindow.cc);
         } else {
           console.log("실패");
         }
