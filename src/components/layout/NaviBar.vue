@@ -3,7 +3,7 @@
     <v-app-bar color="deep-purple" dark>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>니가 사는 그집 </v-toolbar-title>
+      <v-toolbar-title>니가 사는 그 집 </v-toolbar-title>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn right color="deep-purple" v-if="userInfo" @click="moveMypage()"
           >{{ userInfo.userid }}님 안녕하세요</v-btn

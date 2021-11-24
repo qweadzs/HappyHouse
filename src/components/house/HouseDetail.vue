@@ -1,7 +1,14 @@
 <template>
   <b-container v-if="house" class="bv-example-row">
     <b-row class="mb-2 mt-1">
-      <b-col><KakaoMap /> </b-col>
+      <b-col>
+        <v-card loading="true">
+          <KakaoMap />
+        </v-card>
+        <v-card class="chart">
+          <Chart />
+        </v-card>
+      </b-col>
     </b-row>
 
     <b-row>
@@ -12,7 +19,7 @@
             (parseInt(house.거래금액.replace(",", "")) * 10000) | price
           }}원</b-alert
         > -->
-        <v-card> asdf </v-card>
+        <v-card outlined> asdf </v-card>
       </b-col>
     </b-row>
   </b-container>
@@ -21,6 +28,7 @@
 <script>
 import { mapState } from "vuex";
 import KakaoMap from "@/components/house/KakaoMap.vue";
+import Chart from "@/components/house/Chart.vue";
 
 const houseStore = "houseStore";
 
@@ -28,6 +36,16 @@ export default {
   name: "HouseDetail",
   components: {
     KakaoMap,
+    Chart,
+  },
+  data() {
+    return {
+      chartData: {
+        Books: 24,
+        Magazine: 30,
+        Newspapers: 10,
+      },
+    };
   },
   computed: {
     ...mapState(houseStore, ["house"]),
@@ -45,4 +63,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.chart {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
