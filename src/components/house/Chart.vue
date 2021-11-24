@@ -32,7 +32,7 @@ export default {
       }
       this.renderChart(
         {
-          labels: ["은행", "마트", "약국", "주유소", "카페", "편의점"],
+          labels: ["은행", "카페", "편의점", "마트", "주유소", "약국"],
           datasets: [
             {
               backgroundColor: [

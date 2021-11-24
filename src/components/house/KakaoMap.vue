@@ -71,6 +71,7 @@ export default {
         OL7: 0, // 주유소
         PM9: 0, // 약국
       },
+      temp: [],
     };
   },
   // props: {
@@ -134,8 +135,17 @@ export default {
           radius: 550,
         });
       }
-      console.log(this.allCategory);
+      // console.log("emit실행");
+      // this.$emit("chart-data", {
+      //   BK9: this.allCategory.BK9, // 은행
+      //   CE7: this.allCategory.CE7, // 카페
+      //   CS2: this.allCategory.CS2, // 편의점
+      //   MT1: this.allCategory.MT1, // 마트
+      //   OL7: this.allCategory.OL7, // 주유소
+      //   PM9: this.allCategory.PM9, // 약국
+      // });
     },
+
     placesSearch(data, status) {
       if (status === kakao.maps.services.Status.OK) {
         var category = data[0].category_group_code;
@@ -143,6 +153,7 @@ export default {
         for (var key in this.allCategory) {
           if (key === category) {
             this.allCategory[key] = data.length;
+            console.log("저장");
             break;
           }
         }
@@ -269,20 +280,36 @@ export default {
           // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
           this.map.panTo(coords);
           this.searchAll();
-          this.$emit("chart-data", {
-            BK9: this.allCategory.BK9, // 은행
-            CE7: this.allCategory.CE7, // 카페
-            CS2: this.allCategory.CS2, // 편의점
-            MT1: this.allCategory.MT1, // 마트
-            OL7: this.allCategory.OL7, // 주유소
-            PM9: this.allCategory.PM9, // 약국
-          });
+          setTimeout(this.forfor, 150);
+          // this.forfor();
+
+          // this.$emit("chart-data", {
+          //   BK9: this.allCategory.BK9, // 은행
+          //   CE7: this.allCategory.CE7, // 카페
+          //   CS2: this.allCategory.CS2, // 편의점
+          //   MT1: this.allCategory.MT1, // 마트
+          //   OL7: this.allCategory.OL7, // 주유소
+          //   PM9: this.allCategory.PM9, // 약국
+          // });
           // for (var key in this.allCategory) {
           //   console.log(key);
           // }
         } else {
           console.log("실패");
         }
+      });
+    },
+    forfor() {
+      for (var key in this.allCategory) {
+        this.temp.push(this.allCategory[key]);
+      }
+      this.$emit("chart-data", {
+        BK9: this.allCategory.BK9, // 은행
+        CE7: this.allCategory.CE7, // 카페
+        CS2: this.allCategory.CS2, // 편의점
+        MT1: this.allCategory.MT1, // 마트
+        OL7: this.allCategory.OL7, // 주유소
+        PM9: this.allCategory.PM9, // 약국
       });
     },
 

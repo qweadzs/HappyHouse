@@ -60,6 +60,8 @@ export default {
   },
   methods: {
     chartDataSend(datas) {
+      console.log("$emit");
+      console.log(datas);
       this.datas = datas;
     },
   },
