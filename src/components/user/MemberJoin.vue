@@ -190,7 +190,6 @@ export default {
           this.moveList();
         },
         (error) => {
-          alert("아이디가 중복됩니다. 다른 아이디를 사용해주세요.");
           console.log(error);
         }
       );
