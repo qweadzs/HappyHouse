@@ -24,4 +24,9 @@ function newsList(params, success, fail) {
   api.get(`/news`).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, houseList, wishregist, newsList };
+// 추천 산책길 가져오기
+function roadList(no, success, fail) {
+  api.get(`/map/road/${no}`).then(success).catch(fail);
+}
+
+export { sidoList, gugunList, houseList, wishregist, newsList, roadList };
