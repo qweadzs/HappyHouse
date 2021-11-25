@@ -22,6 +22,7 @@
           class="ma-1"
           color="grey"
           outlined
+          v-if="article.userid === userInfo.username"
           @click="moveModifyArticle"
           >글수정</v-btn
         >
@@ -30,6 +31,7 @@
           class="ma-1"
           color="grey"
           outlined
+          v-if="article.userid === userInfo.username"
           @click="removeArticle"
           >글삭제</v-btn
         >
@@ -70,10 +72,10 @@
 // import moment from "moment";
 import { getArticle, deleteArticle } from "@/api/board";
 // import { commentList } from "@/api/comment";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import Comment from "@/components/board/child/comment/Comment";
 import CommentWrite from "@/components/board/child/comment/CommentWrite";
-
+const memberStore = "memberStore";
 const commentStore = "commentStore";
 
 export default {
@@ -92,6 +94,7 @@ export default {
   computed: {
     // ...mapState(commentStore, ["comments"]),
     ...mapGetters(commentStore, ["comments"]),
+    ...mapState(memberStore, ["userInfo"]),
     message() {
       if (this.article.content)
         return this.article.content.split("\n").join("<br>");

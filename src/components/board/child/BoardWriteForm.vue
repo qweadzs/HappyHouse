@@ -10,7 +10,7 @@
         >
           <b-form-input
             id="userid"
-            :disabled="isUserid"
+            disabled
             v-model="article.userid"
             type="text"
             required
@@ -61,7 +61,9 @@
 
 <script>
 import { writeArticle, getArticle, modifyArticle } from "@/api/board";
+import { mapState } from "vuex";
 
+const memberStore = "memberStore";
 export default {
   name: "BoardWriteForm",
   data() {
@@ -75,10 +77,14 @@ export default {
       isUserid: false,
     };
   },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+  },
   props: {
     type: { type: String },
   },
   created() {
+    this.article.userid = this.userInfo.username;
     if (this.type === "modify") {
       getArticle(
         this.$route.params.articleno,

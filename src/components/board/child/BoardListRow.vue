@@ -12,7 +12,7 @@
     <b-td>{{ regtime }}</b-td>
   </b-tr> -->
 
-  <tr>
+  <tr class="colsize">
     <td>{{ articleno }}</td>
     <th>
       <router-link
@@ -46,4 +46,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>
