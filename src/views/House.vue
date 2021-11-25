@@ -11,11 +11,14 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="6">
+      <v-col cols="5">
         <house-detail />
       </v-col>
-      <v-col cols="6" align="right" rows="6" class="overflow-hidden">
+      <v-col cols="5" align="right" rows="6" class="overflow-hidden">
         <house-list />
+      </v-col>
+      <v-col cols="2" align="right" rows="6" class="overflow-hidden">
+        <Road />
       </v-col>
     </v-row>
   </v-container>
@@ -24,6 +27,7 @@
 import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 import HouseList from "@/components/house/HouseList.vue";
 import HouseDetail from "@/components/house/HouseDetail.vue";
+import Road from "@/components/house/Road.vue";
 
 export default {
   name: "House",
@@ -31,6 +35,7 @@ export default {
     HouseSearchBar,
     HouseList,
     HouseDetail,
+    Road,
   },
 };
 </script>

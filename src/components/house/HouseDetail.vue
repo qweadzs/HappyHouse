@@ -18,10 +18,9 @@
             (parseInt(house.거래금액.replace(",", "")) * 10000) | price
           }}원</b-alert
         > -->
-        <v-card outlined> asdf </v-card>
       </v-col>
     </v-row>
-    <Road />
+    <v-row class="mb-2 mt-1"> </v-row>
   </b-container>
 </template>
 
@@ -29,7 +28,6 @@
 import { mapState } from "vuex";
 import KakaoMap from "@/components/house/KakaoMap.vue";
 import Chart from "@/components/house/Chart.vue";
-import Road from "@/components/house/Road.vue";
 
 const houseStore = "houseStore";
 
@@ -38,7 +36,6 @@ export default {
   components: {
     KakaoMap,
     Chart,
-    Road,
   },
   data() {
     return {
