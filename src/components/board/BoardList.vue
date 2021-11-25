@@ -52,7 +52,7 @@
       </thead>
       <tbody>
         <board-list-row
-          style="height: 100px; font-size: 30px"
+          style="height: 100px; font-size: 30px; text-align: left"
           v-for="(article, index) in articles"
           :key="index"
           v-bind="article"

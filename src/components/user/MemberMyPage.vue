@@ -3,7 +3,7 @@
     <v-row class="bv-example-row mt-3 text-center">
       <v-col sm="12">
         <v-card>
-          <v-card-title class="cyan darken-1">
+          <v-card-title class="deep-purple darken-1">
             <span class="text-h5 white--text"
               >{{ userInfo.userid }}님의 회원 정보</span
             >

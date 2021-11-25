@@ -67,9 +67,9 @@
             :to="{ name: 'Mail' }"
           >
             <v-list-item-icon>
-              <v-icon>mdi-email</v-icon>
+              <v-icon>mdi-account-plus</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>메일 보내기</v-list-item-title>
+            <v-list-item-title>관리자 모드</v-list-item-title>
           </v-list-item>
 
           <v-list-item v-if="userInfo" @click.prevent="onClickLogout">

@@ -13,13 +13,13 @@
         {{ this.aptName }}
       </v-card-subtitle>
 
-      <v-card-text class="text--primary">
-        <div>{{ this.dongName }}</div>
+      <v-card-text class="text--primary .float-left">
+        <div>{{ this.dongName }}에 위치</div>
         <div>{{ this.buildYear }}년 건축</div>
-        <div>{{ this.dealAmount }}천원</div>
-        <div>{{ this.dealMonth }}거래년도</div>
-        <div>{{ this.dealDay }}거래일</div>
-        <div>{{ this.area }}m2</div>
+        <div>{{ this.dealAmount }}(단위 : 만)</div>
+        <div>최근 거래 월 : {{ this.dealMonth }}월</div>
+        <div>최근 거래 일 : {{ this.dealDay }}일</div>
+        <div>{{ this.area }}m^2</div>
       </v-card-text>
     </v-card>
   </v-container>
